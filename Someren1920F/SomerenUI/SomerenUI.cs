@@ -47,7 +47,7 @@ namespace SomerenUI
                 // show students
                 pnl_Students.Show();
 
-                
+                lbl_Students.Text = "Students";
 
                 // fill the students listview within the students panel with a list of students
                 SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
@@ -61,8 +61,35 @@ namespace SomerenUI
                 foreach (SomerenModel.Student s in studentList)
                 {
                     ListViewItem li = new ListViewItem(s.Name);
-                    listViewStudents.Items.Add(li);
                     li.SubItems.Add(s.Number.ToString());
+                    listViewStudents.Items.Add(li);
+                }
+            }
+            else if (panelName == "Rooms")
+            {
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+
+                // show students
+                pnl_Students.Show();
+                listViewStudents.Clear();
+
+                lbl_Students.Text = "Rooms";
+
+                Room_Service room_Service = new Room_Service();
+                List<Room> rooms = room_Service.GetRooms();
+
+                listViewStudents.Clear();
+                listViewStudents.Columns.Add("Number");
+                listViewStudents.Columns.Add("Capacity");
+                listViewStudents.Columns.Add("Type");
+
+                foreach (Room r in rooms)
+                {
+                    ListViewItem li = new ListViewItem(r.Number.ToString());
+                    li.SubItems.Add(r.Capacity.ToString());
+                    li.SubItems.Add((r.Type) ? "Student_Room" : "Teacher_Room");
+                    listViewStudents.Items.Add(li);
                 }
             }
         }
@@ -100,6 +127,11 @@ namespace SomerenUI
         private void listViewStudents_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Rooms");
         }
     }
 }
