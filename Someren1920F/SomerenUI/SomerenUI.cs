@@ -55,12 +55,14 @@ namespace SomerenUI
 
                 // clear the listview before filling it again
                 listViewStudents.Clear();
+                listViewStudents.Columns.Add("Name");
+                listViewStudents.Columns.Add("ID");
 
                 foreach (SomerenModel.Student s in studentList)
                 {
-
                     ListViewItem li = new ListViewItem(s.Name);
                     listViewStudents.Items.Add(li);
+                    li.SubItems.Add(s.Number.ToString());
                 }
             }
         }
@@ -93,6 +95,11 @@ namespace SomerenUI
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Students");
+        }
+
+        private void listViewStudents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
