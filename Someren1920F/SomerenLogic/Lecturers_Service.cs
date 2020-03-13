@@ -23,14 +23,18 @@ namespace SomerenLogic
             catch (Exception)
             {
                 List<Lecturer> Lecturer = new List<Lecturer>();
-                Lecturer a = new Lecturer();
-                a.Name = "Mr. Test Lecturer";
-                a.Number = 474791;
+                Lecturer a = new Lecturer
+                {
+                    Name = "Mr. Test Lecturer",
+                    Number = 474791
+                };
                 Lecturer.Add(a);
 
-                Lecturer b = new Lecturer();
-                b.Name = "Mrs. Test Lecturer";
-                b.Number = 197474;
+                Lecturer b = new Lecturer
+                {
+                    Name = "Mrs. Test Lecturer",
+                    Number = 197474
+                };
                 Lecturer.Add(b);
 
                 return Lecturer;

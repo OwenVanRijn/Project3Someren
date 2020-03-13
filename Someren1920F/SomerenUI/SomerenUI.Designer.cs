@@ -67,7 +67,6 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dashboardToolStripMenuItem,
@@ -88,7 +87,7 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(118, 32);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(118, 29);
             this.dashboardToolStripMenuItem.Text = "Application";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
@@ -114,27 +113,27 @@
             // studentsToolStripMenuItem
             // 
             this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
-            this.studentsToolStripMenuItem.Size = new System.Drawing.Size(97, 32);
+            this.studentsToolStripMenuItem.Size = new System.Drawing.Size(97, 29);
             this.studentsToolStripMenuItem.Text = "Students";
             this.studentsToolStripMenuItem.Click += new System.EventHandler(this.studentsToolStripMenuItem_Click);
             // 
             // lecturersToolStripMenuItem
             // 
             this.lecturersToolStripMenuItem.Name = "lecturersToolStripMenuItem";
-            this.lecturersToolStripMenuItem.Size = new System.Drawing.Size(98, 32);
+            this.lecturersToolStripMenuItem.Size = new System.Drawing.Size(98, 29);
             this.lecturersToolStripMenuItem.Text = "Lecturers";
             this.lecturersToolStripMenuItem.Click += new System.EventHandler(this.lecturersToolStripMenuItem_Click);
             // 
             // activitiesToolStripMenuItem
             // 
             this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
-            this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(98, 32);
+            this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(98, 29);
             this.activitiesToolStripMenuItem.Text = "Activities";
             // 
             // roomsToolStripMenuItem
             // 
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
-            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(84, 32);
+            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(84, 29);
             this.roomsToolStripMenuItem.Text = "Rooms";
             this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
@@ -189,14 +188,17 @@
             // studentID
             // 
             this.studentID.Text = "ID";
+            this.studentID.Width = 100;
             // 
             // studentName
             // 
             this.studentName.Text = "Name";
+            this.studentName.Width = 150;
             // 
             // studentDOB
             // 
             this.studentDOB.Text = "Date of Birth";
+            this.studentDOB.Width = 186;
             // 
             // pictureBox1
             // 
