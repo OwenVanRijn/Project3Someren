@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SomerenModel
 {
-    public class Teacher
+    public class Lecturer
     {
         public String Name { get; set; }
         public int Number { get; set; } // LecturerNumber, e.g. 47198

@@ -9,17 +9,17 @@ namespace SomerenLogic
     {
         Room_DAO room_DAO = new Room_DAO();
 
-        public List<Lecturers> GetRooms()
+        public List<Room> GetRooms()
         {
             try
             {
-                List<Lecturers> rooms = room_DAO.Db_Get_All_Rooms();
+                List<Room> rooms = room_DAO.Db_Get_All_Rooms();
                 return rooms;
             }
             catch (Exception)
             {
-                List<Lecturers> rooms = new List<Lecturers>();
-                Lecturers a = new Lecturers();
+                List<Room> rooms = new List<Room>();
+                Room a = new Room();
                 a.Number = 0;
                 a.Capacity = 0;
                 a.Type = false;

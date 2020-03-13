@@ -11,28 +11,26 @@ namespace SomerenLogic
 {
     public class Lecturers_Service
     {
-        Student_DAO student_db = new Student_DAO();
+        Lecturers_DAO Lecturers_db = new Lecturers_DAO();
 
-        public List<Student> GetLecturers()
+        public List<Lecturer> GetLecturers()
         {
             try
             {
-                List<Student> Lecturer = student_db.Db_Get_All_Students();
+                List<Lecturer> Lecturer = Lecturers_db.Db_Get_All_Lecturers();
                 return Lecturer;
             }
             catch (Exception)
             {
-                List<Student> Lecturer = new List<Student>();
-                Student a = new Student();
-                a.Name = "Mr. Test Student";
+                List<Lecturer> Lecturer = new List<Lecturer>();
+                Lecturer a = new Lecturer();
+                a.Name = "Mr. Test Lecturer";
                 a.Number = 474791;
-                a.BirthDate = DateTime.Parse("1990-07-04");
                 Lecturer.Add(a);
 
-                Student b = new Student();
-                b.Name = "Mrs. Test Student";
+                Lecturer b = new Lecturer();
+                b.Name = "Mrs. Test Lecturer";
                 b.Number = 197474;
-                b.BirthDate = DateTime.Parse("2019-03-04");
                 Lecturer.Add(b);
 
                 return Lecturer;

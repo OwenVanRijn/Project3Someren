@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SomerenModel
 {
-    public class Lecturers
+    public class Room
     {
         public int Number { get; set; } // RoomNumber, e.g. 206
         public int Capacity { get; set;  } // number of beds, either 4,6,8,12 or 16

@@ -77,14 +77,14 @@ namespace SomerenUI
                 lbl_Students.Text = "Rooms";
 
                 Room_Service room_Service = new Room_Service();
-                List<Lecturers> rooms = room_Service.GetRooms();
+                List<Room> rooms = room_Service.GetRooms();
 
                 listViewStudents.Clear();
                 listViewStudents.Columns.Add("Number");
                 listViewStudents.Columns.Add("Capacity");
                 listViewStudents.Columns.Add("Type");
 
-                foreach (Lecturers r in rooms)
+                foreach (Room r in rooms)
                 {
                     ListViewItem li = new ListViewItem(r.Number.ToString());
                     li.SubItems.Add(r.Capacity.ToString());
@@ -100,38 +100,27 @@ namespace SomerenUI
                 pnl_Dashboard.Hide();
                 img_Dashboard.Hide();
                 pnl_Students.Hide();
-                
-                // show students
+
+                // show lecturers
                 pnl_Students.Show();
+                listViewStudents.Clear();
 
-                lbl_Students.Text = "Lecturers";
+                pnl_Students.Text= "Lecturers";
 
-                /*
-                SomerenLogic.Lecturers_Service LectService = new SomerenLogic.Lecturers_Service();
-                List<Lecturers> Lecturerslist = LectService.GetLecturers();
-                */
-                SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
-                List<Student> studentList = studService.GetStudents();
+                Lecturers_Service LectService = new Lecturers_Service();
+                List<Lecturer> Lecturerslist = LectService.GetLecturers();
 
                 // clear the listview before filling it again
                 listViewStudents.Clear();
                 listViewStudents.Columns.Add("Name");
                 listViewStudents.Columns.Add("ID");
 
-                foreach (SomerenModel.Student s in studentList)
+                foreach (Lecturer l in Lecturerslist)
                 {
-                    ListViewItem li = new ListViewItem(s.Name);
-                    li.SubItems.Add(s.Number.ToString());
-                    listViewStudents.Items.Add(li);
-                }
-
-                /*foreach (SomerenModel.Lecturers l in Lecturerslist)
-                {
-                    ListViewItem li = new ListViewItem(l.Name);
+                    ListViewItem li = new ListViewItem(l.Name) ;
                     li.SubItems.Add(l.Number.ToString());
                     listViewStudents.Items.Add(li);
                 }
-                */
             }
         }
 

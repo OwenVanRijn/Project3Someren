@@ -12,20 +12,20 @@ namespace SomerenDAL
 {
     public class Room_DAO : Base
     {
-        public List<Lecturers> Db_Get_All_Rooms()
+        public List<Room> Db_Get_All_Rooms()
         {
             string query = "SELECT id, capacity, teacher from room";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        private List<Lecturers> ReadTables(DataTable dataTable)
+        private List<Room> ReadTables(DataTable dataTable)
         {
-            List<Lecturers> rooms = new List<Lecturers>();
+            List<Room> rooms = new List<Room>();
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                Lecturers room = new Lecturers()
+                Room room = new Room()
                 {
                     Number = (int)dr["id"],
                     Capacity = (byte)dr["capacity"],
