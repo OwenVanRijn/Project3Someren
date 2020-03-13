@@ -14,7 +14,7 @@ namespace SomerenDAL
     {
         public List<Lecturer> Db_Get_All_Lecturers()
         {
-            string query = "SELECT id FIRST from [user] WHERE teacher = 1";
+            string query = "SELECT id, first, last FROM [user] WHERE teacher = 1";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
@@ -28,7 +28,7 @@ namespace SomerenDAL
                 Lecturer lecturer = new Lecturer()
                 {
                     Number = (int)dr["id"],
-                    Name = (String)(dr["first"].ToString())
+                    Name = (String)(dr["first"].ToString()) + " " + (String)(dr["last"].ToString())
                 };
                 lecturers.Add(lecturer);
             }

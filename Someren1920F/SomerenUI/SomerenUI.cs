@@ -99,13 +99,12 @@ namespace SomerenUI
                 // hide all other panels
                 pnl_Dashboard.Hide();
                 img_Dashboard.Hide();
-                pnl_Students.Hide();
 
                 // show lecturers
                 pnl_Students.Show();
                 listViewStudents.Clear();
 
-                pnl_Students.Text= "Lecturers";
+                lbl_Students.Text = "Lecturers";
 
                 Lecturers_Service LectService = new Lecturers_Service();
                 List<Lecturer> Lecturerslist = LectService.GetLecturers();
