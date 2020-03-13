@@ -77,14 +77,14 @@ namespace SomerenUI
                 lbl_Students.Text = "Rooms";
 
                 Room_Service room_Service = new Room_Service();
-                List<Room> rooms = room_Service.GetRooms();
+                List<Lecturers> rooms = room_Service.GetRooms();
 
                 listViewStudents.Clear();
                 listViewStudents.Columns.Add("Number");
                 listViewStudents.Columns.Add("Capacity");
                 listViewStudents.Columns.Add("Type");
 
-                foreach (Room r in rooms)
+                foreach (Lecturers r in rooms)
                 {
                     ListViewItem li = new ListViewItem(r.Number.ToString());
                     li.SubItems.Add(r.Capacity.ToString());
@@ -92,11 +92,52 @@ namespace SomerenUI
                     listViewStudents.Items.Add(li);
                 }
             }
+
+            else if (panelName == "Lecturers")
+            {
+                                         
+                // hide all other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Students.Hide();
+                
+                // show students
+                pnl_Students.Show();
+
+                lbl_Students.Text = "Lecturers";
+
+                /*
+                SomerenLogic.Lecturers_Service LectService = new SomerenLogic.Lecturers_Service();
+                List<Lecturers> Lecturerslist = LectService.GetLecturers();
+                */
+                SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
+                List<Student> studentList = studService.GetStudents();
+
+                // clear the listview before filling it again
+                listViewStudents.Clear();
+                listViewStudents.Columns.Add("Name");
+                listViewStudents.Columns.Add("ID");
+
+                foreach (SomerenModel.Student s in studentList)
+                {
+                    ListViewItem li = new ListViewItem(s.Name);
+                    li.SubItems.Add(s.Number.ToString());
+                    listViewStudents.Items.Add(li);
+                }
+
+                /*foreach (SomerenModel.Lecturers l in Lecturerslist)
+                {
+                    ListViewItem li = new ListViewItem(l.Name);
+                    li.SubItems.Add(l.Number.ToString());
+                    listViewStudents.Items.Add(li);
+                }
+                */
+            }
         }
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           //
+           
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -132,6 +173,11 @@ namespace SomerenUI
         private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Rooms");
+        }
+
+        private void lecturersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Lecturers");
         }
     }
 }

@@ -10,30 +10,29 @@ using SomerenModel;
 
 namespace SomerenDAL
 {
-    public class Room_DAO : Base
+    public class Lecturers_DAO : Base
     {
-        public List<Lecturers> Db_Get_All_Rooms()
+        public List<Student> Db_Get_All_Lecturers()
         {
-            string query = "SELECT id, capacity, teacher from room";
+            string query = "SELECT id FIRST from [user] WHERE teacher = 1";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             return ReadTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        private List<Lecturers> ReadTables(DataTable dataTable)
+        private List<Student> ReadTables(DataTable dataTable)
         {
-            List<Lecturers> rooms = new List<Lecturers>();
+            List<Student> students = new List<Student>();
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                Lecturers room = new Lecturers()
+                Student student = new Student()
                 {
                     Number = (int)dr["id"],
-                    Capacity = (byte)dr["capacity"],
-                    Type = !(bool)dr["teacher"]
+                    Name = (String)(dr["first"].ToString())
                 };
-                rooms.Add(room);
+                students.Add(student);
             }
-            return rooms;
+            return students;
         }
     }
 }
