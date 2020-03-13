@@ -9,11 +9,11 @@ namespace SomerenLogic
     {
         Room_DAO room_DAO = new Room_DAO();
 
-        public List<Room> GetRooms()
+        public List<Room> GetRooms(bool deep)
         {
             try
             {
-                List<Room> rooms = room_DAO.Db_Get_All_Rooms();
+                List<Room> rooms = room_DAO.Db_Get_All_Rooms(deep);
                 return rooms;
             }
             catch (Exception)

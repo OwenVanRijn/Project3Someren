@@ -30,24 +30,32 @@ namespace SomerenUI
 
             if(panelName == "Dashboard")
             {
-
-                // hide all other panels
+                // Manage panel view
                 pnl_Students.Hide();
-
-                // show dashboard
                 pnl_Dashboard.Show();
                 img_Dashboard.Show();
             }
             else if(panelName == "Students")
             {
-                // hide all other panels
+                // Manage panels
+                pnl_Students.Show();
                 pnl_Dashboard.Hide();
                 img_Dashboard.Hide();
 
-                // show students
-                pnl_Students.Show();
+                // Manage panel sub view
+                listViewStudents.Show();
+                dateGridStudents.Hide();
 
+                // Set panel title
                 lbl_Students.Text = "Students";
+
+                // Force elements to update mid run
+                pnl_Students.Refresh();
+                pnl_Dashboard.Refresh();
+                img_Dashboard.Refresh();
+                listViewStudents.Refresh();
+                dateGridStudents.Refresh();
+                lbl_Students.Refresh();
 
                 // fill the students listview within the students panel with a list of students
                 SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
@@ -67,17 +75,28 @@ namespace SomerenUI
             }
             else if (panelName == "Rooms")
             {
+                // Manage panels
+                pnl_Students.Show();
                 pnl_Dashboard.Hide();
                 img_Dashboard.Hide();
 
-                // show students
-                pnl_Students.Show();
-                listViewStudents.Clear();
+                // Manage panel sub view
+                listViewStudents.Show();
+                dateGridStudents.Hide();
 
+                // Set panel title
                 lbl_Students.Text = "Rooms";
 
+                // Force elements to update mid run
+                pnl_Students.Refresh();
+                pnl_Dashboard.Refresh();
+                img_Dashboard.Refresh();
+                listViewStudents.Refresh();
+                dateGridStudents.Refresh();
+                lbl_Students.Refresh();
+
                 Room_Service room_Service = new Room_Service();
-                List<Room> rooms = room_Service.GetRooms();
+                List<Room> rooms = room_Service.GetRooms(false);
 
                 listViewStudents.Clear();
                 listViewStudents.Columns.Add("Number");
@@ -95,16 +114,25 @@ namespace SomerenUI
 
             else if (panelName == "Lecturers")
             {
-                                         
-                // hide all other panels
+                // Manage panels
+                pnl_Students.Show();
                 pnl_Dashboard.Hide();
                 img_Dashboard.Hide();
 
-                // show lecturers
-                pnl_Students.Show();
-                listViewStudents.Clear();
+                // Manage panel sub view
+                listViewStudents.Show();
+                dateGridStudents.Hide();
 
+                // Set panel title
                 lbl_Students.Text = "Lecturers";
+
+                // Force elements to update mid run
+                pnl_Students.Refresh();
+                pnl_Dashboard.Refresh();
+                img_Dashboard.Refresh();
+                listViewStudents.Refresh();
+                dateGridStudents.Refresh();
+                lbl_Students.Refresh();
 
                 Lecturers_Service LectService = new Lecturers_Service();
                 List<Lecturer> Lecturerslist = LectService.GetLecturers();
@@ -119,6 +147,47 @@ namespace SomerenUI
                     ListViewItem li = new ListViewItem(l.Name) ;
                     li.SubItems.Add(l.Number.ToString());
                     listViewStudents.Items.Add(li);
+                }
+            }
+
+            else if (panelName == "Allocation")
+            {
+                // Manage panels
+                pnl_Students.Show();
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+
+                // Manage panel sub view
+                listViewStudents.Hide();
+                dateGridStudents.Show();
+
+                // Set panel title
+                lbl_Students.Text = "Allocation";
+
+                // Force elements to update mid run
+                pnl_Students.Refresh();
+                pnl_Dashboard.Refresh();
+                img_Dashboard.Refresh();
+                listViewStudents.Refresh();
+                dateGridStudents.Refresh();
+                lbl_Students.Refresh();
+
+                Room_Service RoomService = new Room_Service();
+                List<Room> roomList = RoomService.GetRooms(true);
+
+                //TODO: Implement a base class to avoid these double foreach loops
+
+                foreach (Room room in roomList)
+                {
+                    foreach (Student student in room.Students)
+                    {
+                        dateGridStudents.Rows.Add(student.Number, student.Name, student.BirthDate, room.Number);
+                    }
+
+                    foreach (Lecturer lecturer in room.Lecturers)
+                    {
+                        dateGridStudents.Rows.Add(lecturer.Number, lecturer.Name, "", room.Number);
+                    }
                 }
             }
         }
@@ -166,6 +235,11 @@ namespace SomerenUI
         private void lecturersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Lecturers");
+        }
+
+        private void llocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Allocation");
         }
     }
 }
