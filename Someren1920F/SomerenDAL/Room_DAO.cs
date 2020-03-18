@@ -6,30 +6,30 @@ using SomerenModel;
 
 namespace SomerenDAL
 {
-    public class Room_DAO : Base
+    public class RoomDAO : Base
     {
-        public List<Room> Db_Get_All_Rooms(bool deep)
+        public List<Room> databaseGetAllRooms(bool deep)
         {
             string query = "SELECT id, capacity, teacher from room";
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            return ReadRoomTables(ExecuteSelectQuery(query, sqlParameters), deep);
+            return readRoomTables(ExecuteSelectQuery(query, sqlParameters), deep);
         }
 
-        private List<Student> Db_Get_Students_By_Room(int roomId)
+        private List<Student> databaseGetStudentsByRoom(int roomId)
         {
             string query = "SELECT id, first, last FROM [user] INNER JOIN user_room ON [user].id = user_room.[user] WHERE teacher = 0 AND user_room.room = " + roomId.ToString();
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            return ReadStudentTables(ExecuteSelectQuery(query, sqlParameters));
+            return readStudentTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        private List<Lecturer> Db_Get_Lecturers_By_Room(int roomId)
+        private List<Lecturer> databaseGetLecturersByRoom(int roomId)
         {
             string query = "SELECT id, first, last FROM [user] INNER JOIN user_room ON [user].id = user_room.[user] WHERE teacher = 1 AND user_room.room = " + roomId.ToString();
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            return ReadLecturerTables(ExecuteSelectQuery(query, sqlParameters));
+            return readLecturerTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        private List<Room> ReadRoomTables(DataTable dataTable, bool deep)
+        private List<Room> readRoomTables(DataTable dataTable, bool deep)
         {
             List<Room> rooms = new List<Room>();
 
@@ -37,15 +37,15 @@ namespace SomerenDAL
             {
                 Room room = new Room()
                 {
-                    Number = (int)dr["id"],
-                    Capacity = (byte)dr["capacity"],
-                    Type = !(bool)dr["teacher"]
+                    number = (int)dr["id"],
+                    capacity = (byte)dr["capacity"],
+                    type = !(bool)dr["teacher"]
                 };
 
                 if (deep)
                 {
-                    room.Students = Db_Get_Students_By_Room((int)dr["id"]);
-                    room.Lecturers = Db_Get_Lecturers_By_Room((int)dr["id"]);
+                    room.students = databaseGetStudentsByRoom((int)dr["id"]);
+                    room.lecturers = databaseGetLecturersByRoom((int)dr["id"]);
                 }
 
                 rooms.Add(room);
@@ -53,7 +53,7 @@ namespace SomerenDAL
             return rooms;
         }
 
-        private List<Student> ReadStudentTables(DataTable dataTable)
+        private List<Student> readStudentTables(DataTable dataTable)
         {
             List<Student> students = new List<Student>();
 
@@ -61,15 +61,15 @@ namespace SomerenDAL
             {
                 Student student = new Student()
                 {
-                    Number = (int)dr["id"],
-                    Name = (String)(dr["first"].ToString()) + " " + (String)(dr["last"].ToString())
+                    number = (int)dr["id"],
+                    name = (String)(dr["first"].ToString()) + " " + (String)(dr["last"].ToString())
                 };
                 students.Add(student);
             }
             return students;
         }
 
-        private List<Lecturer> ReadLecturerTables(DataTable dataTable)
+        private List<Lecturer> readLecturerTables(DataTable dataTable)
         {
             List<Lecturer> lecturers = new List<Lecturer>();
 
@@ -77,8 +77,8 @@ namespace SomerenDAL
             {
                 Lecturer lecturer = new Lecturer()
                 {
-                    Number = (int)dr["id"],
-                    Name = (String)(dr["first"].ToString()) + " " + (String)(dr["last"].ToString())
+                    number = (int)dr["id"],
+                    name = (String)(dr["first"].ToString()) + " " + (String)(dr["last"].ToString())
                 };
                 lecturers.Add(lecturer);
             }

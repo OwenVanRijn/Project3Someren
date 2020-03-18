@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SomerenUI));
-            this.img_Dashboard = new System.Windows.Forms.PictureBox();
+            this.imageDashboard = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dashboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,37 +39,37 @@
             this.lecturersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pnl_Dashboard = new System.Windows.Forms.Panel();
+            this.dashboardPanel = new System.Windows.Forms.Panel();
             this.lbl_Dashboard = new System.Windows.Forms.Label();
-            this.pnl_Students = new System.Windows.Forms.Panel();
-            this.listViewStudents = new System.Windows.Forms.ListView();
+            this.studentsPanel = new System.Windows.Forms.Panel();
+            this.studentsListview = new System.Windows.Forms.ListView();
             this.studentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.studentName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.studentDOB = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lbl_Students = new System.Windows.Forms.Label();
+            this.studentsHeader = new System.Windows.Forms.Label();
             this.llocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dateGridStudents = new System.Windows.Forms.DataGridView();
+            this.studentsDatagrid = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.birth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.room = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            this.pnl_Dashboard.SuspendLayout();
-            this.pnl_Students.SuspendLayout();
+            this.dashboardPanel.SuspendLayout();
+            this.studentsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateGridStudents)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentsDatagrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // img_Dashboard
+            // imageDashboard
             // 
-            this.img_Dashboard.Location = new System.Drawing.Point(627, 0);
-            this.img_Dashboard.Name = "img_Dashboard";
-            this.img_Dashboard.Size = new System.Drawing.Size(311, 270);
-            this.img_Dashboard.TabIndex = 0;
-            this.img_Dashboard.TabStop = false;
-            this.img_Dashboard.Click += new System.EventHandler(this.img_Dashboard_Click);
+            this.imageDashboard.Location = new System.Drawing.Point(627, 0);
+            this.imageDashboard.Name = "imageDashboard";
+            this.imageDashboard.Size = new System.Drawing.Size(311, 270);
+            this.imageDashboard.TabIndex = 0;
+            this.imageDashboard.TabStop = false;
+            this.imageDashboard.Click += new System.EventHandler(this.imageDashboard_Click);
             // 
             // menuStrip1
             // 
@@ -145,14 +145,14 @@
             this.roomsToolStripMenuItem.Text = "Rooms";
             this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
-            // pnl_Dashboard
+            // dashboardPanel
             // 
-            this.pnl_Dashboard.Controls.Add(this.lbl_Dashboard);
-            this.pnl_Dashboard.Controls.Add(this.img_Dashboard);
-            this.pnl_Dashboard.Location = new System.Drawing.Point(12, 27);
-            this.pnl_Dashboard.Name = "pnl_Dashboard";
-            this.pnl_Dashboard.Size = new System.Drawing.Size(938, 467);
-            this.pnl_Dashboard.TabIndex = 2;
+            this.dashboardPanel.Controls.Add(this.lbl_Dashboard);
+            this.dashboardPanel.Controls.Add(this.imageDashboard);
+            this.dashboardPanel.Location = new System.Drawing.Point(12, 27);
+            this.dashboardPanel.Name = "dashboardPanel";
+            this.dashboardPanel.Size = new System.Drawing.Size(938, 467);
+            this.dashboardPanel.TabIndex = 2;
             // 
             // lbl_Dashboard
             // 
@@ -164,31 +164,31 @@
             this.lbl_Dashboard.Text = "Welcome to the Someren Application!";
             this.lbl_Dashboard.Click += new System.EventHandler(this.label1_Click);
             // 
-            // pnl_Students
+            // studentsPanel
             // 
-            this.pnl_Students.Controls.Add(this.dateGridStudents);
-            this.pnl_Students.Controls.Add(this.listViewStudents);
-            this.pnl_Students.Controls.Add(this.pictureBox1);
-            this.pnl_Students.Controls.Add(this.lbl_Students);
-            this.pnl_Students.Location = new System.Drawing.Point(9, 27);
-            this.pnl_Students.Name = "pnl_Students";
-            this.pnl_Students.Size = new System.Drawing.Size(938, 467);
-            this.pnl_Students.TabIndex = 4;
+            this.studentsPanel.Controls.Add(this.studentsDatagrid);
+            this.studentsPanel.Controls.Add(this.studentsListview);
+            this.studentsPanel.Controls.Add(this.pictureBox1);
+            this.studentsPanel.Controls.Add(this.studentsHeader);
+            this.studentsPanel.Location = new System.Drawing.Point(9, 27);
+            this.studentsPanel.Name = "studentsPanel";
+            this.studentsPanel.Size = new System.Drawing.Size(938, 467);
+            this.studentsPanel.TabIndex = 4;
             // 
-            // listViewStudents
+            // studentsListview
             // 
-            this.listViewStudents.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.studentsListview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.studentID,
             this.studentName,
             this.studentDOB});
-            this.listViewStudents.HideSelection = false;
-            this.listViewStudents.Location = new System.Drawing.Point(16, 42);
-            this.listViewStudents.Name = "listViewStudents";
-            this.listViewStudents.Size = new System.Drawing.Size(766, 307);
-            this.listViewStudents.TabIndex = 5;
-            this.listViewStudents.UseCompatibleStateImageBehavior = false;
-            this.listViewStudents.View = System.Windows.Forms.View.Details;
-            this.listViewStudents.SelectedIndexChanged += new System.EventHandler(this.listViewStudents_SelectedIndexChanged);
+            this.studentsListview.HideSelection = false;
+            this.studentsListview.Location = new System.Drawing.Point(16, 42);
+            this.studentsListview.Name = "studentsListview";
+            this.studentsListview.Size = new System.Drawing.Size(766, 307);
+            this.studentsListview.TabIndex = 5;
+            this.studentsListview.UseCompatibleStateImageBehavior = false;
+            this.studentsListview.View = System.Windows.Forms.View.Details;
+            this.studentsListview.SelectedIndexChanged += new System.EventHandler(this.studentsListview_SelectedIndexChanged);
             // 
             // studentID
             // 
@@ -215,15 +215,15 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // lbl_Students
+            // studentsHeader
             // 
-            this.lbl_Students.AutoSize = true;
-            this.lbl_Students.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Students.Location = new System.Drawing.Point(10, 10);
-            this.lbl_Students.Name = "lbl_Students";
-            this.lbl_Students.Size = new System.Drawing.Size(107, 29);
-            this.lbl_Students.TabIndex = 3;
-            this.lbl_Students.Text = "Students";
+            this.studentsHeader.AutoSize = true;
+            this.studentsHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.studentsHeader.Location = new System.Drawing.Point(10, 10);
+            this.studentsHeader.Name = "studentsHeader";
+            this.studentsHeader.Size = new System.Drawing.Size(107, 29);
+            this.studentsHeader.TabIndex = 3;
+            this.studentsHeader.Text = "Students";
             // 
             // llocationToolStripMenuItem
             // 
@@ -232,18 +232,18 @@
             this.llocationToolStripMenuItem.Text = "Allocation";
             this.llocationToolStripMenuItem.Click += new System.EventHandler(this.llocationToolStripMenuItem_Click);
             // 
-            // dateGridStudents
+            // studentsDatagrid
             // 
-            this.dateGridStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dateGridStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.studentsDatagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.studentsDatagrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.name,
             this.birth,
             this.room});
-            this.dateGridStudents.Location = new System.Drawing.Point(16, 42);
-            this.dateGridStudents.Name = "dateGridStudents";
-            this.dateGridStudents.Size = new System.Drawing.Size(766, 150);
-            this.dateGridStudents.TabIndex = 6;
+            this.studentsDatagrid.Location = new System.Drawing.Point(16, 42);
+            this.studentsDatagrid.Name = "studentsDatagrid";
+            this.studentsDatagrid.Size = new System.Drawing.Size(766, 150);
+            this.studentsDatagrid.TabIndex = 6;
             // 
             // id
             // 
@@ -273,24 +273,24 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 506);
-            this.Controls.Add(this.pnl_Students);
-            this.Controls.Add(this.pnl_Dashboard);
+            this.Controls.Add(this.studentsPanel);
+            this.Controls.Add(this.dashboardPanel);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "SomerenUI";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "SomerenApp";
-            this.Load += new System.EventHandler(this.SomerenUI_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).EndInit();
+            this.Load += new System.EventHandler(this.somerenUILoad);
+            ((System.ComponentModel.ISupportInitialize)(this.imageDashboard)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.pnl_Dashboard.ResumeLayout(false);
-            this.pnl_Dashboard.PerformLayout();
-            this.pnl_Students.ResumeLayout(false);
-            this.pnl_Students.PerformLayout();
+            this.dashboardPanel.ResumeLayout(false);
+            this.dashboardPanel.PerformLayout();
+            this.studentsPanel.ResumeLayout(false);
+            this.studentsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateGridStudents)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentsDatagrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,27 +298,27 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox img_Dashboard;
+        private System.Windows.Forms.PictureBox imageDashboard;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem dashboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dashboardToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Panel pnl_Dashboard;
+        private System.Windows.Forms.Panel dashboardPanel;
         private System.Windows.Forms.Label lbl_Dashboard;
         private System.Windows.Forms.ToolStripMenuItem studentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lecturersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem activitiesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem roomsToolStripMenuItem;
-        private System.Windows.Forms.Panel pnl_Students;
-        private System.Windows.Forms.Label lbl_Students;
+        private System.Windows.Forms.Panel studentsPanel;
+        private System.Windows.Forms.Label studentsHeader;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ListView listViewStudents;
+        private System.Windows.Forms.ListView studentsListview;
         private System.Windows.Forms.ColumnHeader studentID;
         private System.Windows.Forms.ColumnHeader studentName;
         private System.Windows.Forms.ColumnHeader studentDOB;
         private System.Windows.Forms.ToolStripMenuItem llocationToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dateGridStudents;
+        private System.Windows.Forms.DataGridView studentsDatagrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn birth;

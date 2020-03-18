@@ -4,8 +4,8 @@ namespace SomerenModel
 {
     public class Lecturer
     {
-        public String Name { get; set; }
-        public int Number { get; set; } // LecturerNumber, e.g. 47198
+        public string name { get; set; }
+        public int number { get; set; } // LecturerNumber, e.g. 47198
 
     }
 }

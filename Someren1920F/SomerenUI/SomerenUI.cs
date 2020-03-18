@@ -2,12 +2,6 @@
 using SomerenModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -20,7 +14,7 @@ namespace SomerenUI
             InitializeComponent();
         }
 
-        private void SomerenUI_Load(object sender, EventArgs e)
+        private void somerenUILoad(object sender, EventArgs e)
         {
             showPanel("Dashboard");
         }
@@ -59,7 +53,7 @@ namespace SomerenUI
 
                 // fill the students listview within the students panel with a list of students
                 SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
-                List<Student> studentList = studService.GetStudents();
+                List<Student> studentList = studService.getStudents();
 
                 // clear the listview before filling it again
                 listViewStudents.Clear();
@@ -68,8 +62,8 @@ namespace SomerenUI
 
                 foreach (SomerenModel.Student s in studentList)
                 {
-                    ListViewItem li = new ListViewItem(s.Name);
-                    li.SubItems.Add(s.Number.ToString());
+                    ListViewItem li = new ListViewItem(s.name);
+                    li.SubItems.Add(s.number.ToString());
                     listViewStudents.Items.Add(li);
                 }
             }
@@ -95,8 +89,8 @@ namespace SomerenUI
                 dateGridStudents.Refresh();
                 lbl_Students.Refresh();
 
-                Room_Service room_Service = new Room_Service();
-                List<Room> rooms = room_Service.GetRooms(false);
+                RoomService roomService = new RoomService();
+                List<Room> rooms = roomService.getRooms(false);
 
                 listViewStudents.Clear();
                 listViewStudents.Columns.Add("Number");
@@ -105,9 +99,9 @@ namespace SomerenUI
 
                 foreach (Room r in rooms)
                 {
-                    ListViewItem li = new ListViewItem(r.Number.ToString());
-                    li.SubItems.Add(r.Capacity.ToString());
-                    li.SubItems.Add((r.Type) ? "Student_Room" : "Teacher_Room");
+                    ListViewItem li = new ListViewItem(r.number.ToString());
+                    li.SubItems.Add(r.capacity.ToString());
+                    li.SubItems.Add((r.type) ? "Student_Room" : "Teacher_Room");
                     listViewStudents.Items.Add(li);
                 }
             }
@@ -134,8 +128,8 @@ namespace SomerenUI
                 dateGridStudents.Refresh();
                 lbl_Students.Refresh();
 
-                Lecturers_Service LectService = new Lecturers_Service();
-                List<Lecturer> Lecturerslist = LectService.GetLecturers();
+                Lecturers_Service lectService = new Lecturers_Service();
+                List<Lecturer> Lecturerslist = lectService.getLecturers();
 
                 // clear the listview before filling it again
                 listViewStudents.Clear();
@@ -144,8 +138,8 @@ namespace SomerenUI
 
                 foreach (Lecturer l in Lecturerslist)
                 {
-                    ListViewItem li = new ListViewItem(l.Name) ;
-                    li.SubItems.Add(l.Number.ToString());
+                    ListViewItem li = new ListViewItem(l.name) ;
+                    li.SubItems.Add(l.number.ToString());
                     listViewStudents.Items.Add(li);
                 }
             }
@@ -172,21 +166,21 @@ namespace SomerenUI
                 dateGridStudents.Refresh();
                 lbl_Students.Refresh();
 
-                Room_Service RoomService = new Room_Service();
-                List<Room> roomList = RoomService.GetRooms(true);
+                RoomService roomService = new RoomService();
+                List<Room> roomList = roomService.getRooms(true);
 
                 //TODO: Implement a base class to avoid these double foreach loops
 
                 foreach (Room room in roomList)
                 {
-                    foreach (Student student in room.Students)
+                    foreach (Student student in room.students)
                     {
-                        dateGridStudents.Rows.Add(student.Number, student.Name, student.BirthDate, room.Number);
+                        dateGridStudents.Rows.Add(student.number, student.name, student.birthDate, room.number);
                     }
 
-                    foreach (Lecturer lecturer in room.Lecturers)
+                    foreach (Lecturer lecturer in room.lecturers)
                     {
-                        dateGridStudents.Rows.Add(lecturer.Number, lecturer.Name, "", room.Number);
+                        dateGridStudents.Rows.Add(lecturer.number, lecturer.name, "", room.number);
                     }
                 }
             }

@@ -7,13 +7,13 @@ namespace SomerenLogic
 {
     public class Student_Service
     {
-        Student_DAO student_db = new Student_DAO();
+        StudentDAO studentDatabase = new StudentDAO();
 
-        public List<Student> GetStudents()
+        public List<Student> getStudents()
         {
             try
             {
-                List<Student> student = student_db.Db_Get_All_Students();
+                List<Student> student = studentDatabase.databaseGetAllStudents();
                 return student;
             }
             catch (Exception)
@@ -22,17 +22,17 @@ namespace SomerenLogic
                 List<Student> student = new List<Student>();
                 Student a = new Student
                 {
-                    Name = "Mr. Test Student",
-                    Number = 474791,
-                    BirthDate = DateTime.Parse("1990-07-04")
+                    name = "Mr. Test Student",
+                    number = 474791,
+                    birthDate = DateTime.Parse("1990-07-04")
                 };
                 student.Add(a);
 
                 Student b = new Student
                 {
-                    Name = "Mrs. Test Student",
-                    Number = 197474,
-                    BirthDate = DateTime.Parse("2019-03-04")
+                    name = "Mrs. Test Student",
+                    number = 197474,
+                    birthDate = DateTime.Parse("2019-03-04")
                 };
                 student.Add(b);
                 return student;

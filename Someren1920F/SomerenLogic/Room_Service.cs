@@ -5,24 +5,24 @@ using System.Collections.Generic;
 
 namespace SomerenLogic
 {
-    public class Room_Service
+    public class RoomService
     {
-        Room_DAO room_DAO = new Room_DAO();
+        RoomDAO roomDAO = new RoomDAO();
 
-        public List<Room> GetRooms(bool deep)
+        public List<Room> getRooms(bool deep)
         {
             try
             {
-                List<Room> rooms = room_DAO.Db_Get_All_Rooms(deep);
+                List<Room> rooms = roomDAO.databaseGetAllRooms(deep);
                 return rooms;
             }
             catch (Exception)
             {
                 List<Room> rooms = new List<Room>();
                 Room a = new Room();
-                a.Number = 0;
-                a.Capacity = 0;
-                a.Type = false;
+                a.number = 0;
+                a.capacity = 0;
+                a.type = false;
                 return rooms;
             }
         }

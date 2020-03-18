@@ -6,16 +6,16 @@ using SomerenModel;
 
 namespace SomerenDAL
 {
-    public class Lecturers_DAO : Base
+    public class LecturersDAO : Base
     {
-        public List<Lecturer> Db_Get_All_Lecturers()
+        public List<Lecturer> databaseGetAllLecturers()
         {
             string query = "SELECT id, first, last FROM [user] WHERE teacher = 1";
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            return ReadTables(ExecuteSelectQuery(query, sqlParameters));
+            return readTables(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        private List<Lecturer> ReadTables(DataTable dataTable)
+        private List<Lecturer> readTables(DataTable dataTable)
         {
             List<Lecturer> lecturers = new List<Lecturer>();
 
@@ -23,8 +23,8 @@ namespace SomerenDAL
             {
                 Lecturer lecturer = new Lecturer()
                 {
-                    Number = (int)dr["id"],
-                    Name = (String)(dr["first"].ToString()) + " " + (String)(dr["last"].ToString())
+                    number = (int)dr["id"],
+                    name = (string)(dr["first"].ToString()) + " " + (String)(dr["last"].ToString())
                 };
                 lecturers.Add(lecturer);
             }

@@ -4,9 +4,9 @@ namespace SomerenModel
 {
     public class Student
     { 
-        public String Name { get; set; }
-        public int Number { get; set; } // StudentNumber, e.g. 474791
-        public DateTime BirthDate { get; set;  }
+        public string name { get; set; }
+        public int number { get; set; } // StudentNumber, e.g. 474791
+        public DateTime birthDate { get; set;  }
 
     }
 }
