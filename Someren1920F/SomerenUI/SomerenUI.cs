@@ -25,146 +25,146 @@ namespace SomerenUI
             if(panelName == "Dashboard")
             {
                 // Manage panel view
-                pnl_Students.Hide();
-                pnl_Dashboard.Show();
-                img_Dashboard.Show();
+                studentsPanel.Hide();
+                dashboardPanel.Show();
+                imageDashboard.Show();
             }
             else if(panelName == "Students")
             {
                 // Manage panels
-                pnl_Students.Show();
-                pnl_Dashboard.Hide();
-                img_Dashboard.Hide();
+                studentsPanel.Show();
+                dashboardPanel.Hide();
+                imageDashboard.Hide();
 
                 // Manage panel sub view
-                listViewStudents.Show();
-                dateGridStudents.Hide();
+                studentsListview.Show();
+                studentsDatagrid.Hide();
 
                 // Set panel title
-                lbl_Students.Text = "Students";
+                studentsHeader.Text = "Students";
 
                 // Force elements to update mid run
-                pnl_Students.Refresh();
-                pnl_Dashboard.Refresh();
-                img_Dashboard.Refresh();
-                listViewStudents.Refresh();
-                dateGridStudents.Refresh();
-                lbl_Students.Refresh();
+                studentsPanel.Refresh();
+                dashboardPanel.Refresh();
+                imageDashboard.Refresh();
+                studentsListview.Refresh();
+                studentsDatagrid.Refresh();
+                studentsHeader.Refresh();
 
                 // fill the students listview within the students panel with a list of students
                 SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
                 List<Student> studentList = studService.getStudents();
 
                 // clear the listview before filling it again
-                listViewStudents.Clear();
-                listViewStudents.Columns.Add("Name");
-                listViewStudents.Columns.Add("ID");
+                studentsListview.Clear();
+                studentsListview.Columns.Add("Name");
+                studentsListview.Columns.Add("ID");
 
                 foreach (SomerenModel.Student s in studentList)
                 {
                     ListViewItem li = new ListViewItem(s.name);
                     li.SubItems.Add(s.number.ToString());
-                    listViewStudents.Items.Add(li);
+                    studentsListview.Items.Add(li);
                 }
             }
             else if (panelName == "Rooms")
             {
                 // Manage panels
-                pnl_Students.Show();
-                pnl_Dashboard.Hide();
-                img_Dashboard.Hide();
+                studentsPanel.Show();
+                dashboardPanel.Hide();
+                imageDashboard.Hide();
 
                 // Manage panel sub view
-                listViewStudents.Show();
-                dateGridStudents.Hide();
+                studentsListview.Show();
+                studentsDatagrid.Hide();
 
                 // Set panel title
-                lbl_Students.Text = "Rooms";
+                studentsHeader.Text = "Rooms";
 
                 // Force elements to update mid run
-                pnl_Students.Refresh();
-                pnl_Dashboard.Refresh();
-                img_Dashboard.Refresh();
-                listViewStudents.Refresh();
-                dateGridStudents.Refresh();
-                lbl_Students.Refresh();
+                studentsPanel.Refresh();
+                dashboardPanel.Refresh();
+                imageDashboard.Refresh();
+                studentsListview.Refresh();
+                studentsDatagrid.Refresh();
+                studentsHeader.Refresh();
 
                 RoomService roomService = new RoomService();
                 List<Room> rooms = roomService.getRooms(false);
 
-                listViewStudents.Clear();
-                listViewStudents.Columns.Add("Number");
-                listViewStudents.Columns.Add("Capacity");
-                listViewStudents.Columns.Add("Type");
+                studentsListview.Clear();
+                studentsListview.Columns.Add("Number");
+                studentsListview.Columns.Add("Capacity");
+                studentsListview.Columns.Add("Type");
 
                 foreach (Room r in rooms)
                 {
                     ListViewItem li = new ListViewItem(r.number.ToString());
                     li.SubItems.Add(r.capacity.ToString());
                     li.SubItems.Add((r.type) ? "Student_Room" : "Teacher_Room");
-                    listViewStudents.Items.Add(li);
+                    studentsListview.Items.Add(li);
                 }
             }
 
             else if (panelName == "Lecturers")
             {
                 // Manage panels
-                pnl_Students.Show();
-                pnl_Dashboard.Hide();
-                img_Dashboard.Hide();
+                studentsPanel.Show();
+                dashboardPanel.Hide();
+                imageDashboard.Hide();
 
                 // Manage panel sub view
-                listViewStudents.Show();
-                dateGridStudents.Hide();
+                studentsListview.Show();
+                studentsDatagrid.Hide();
 
                 // Set panel title
-                lbl_Students.Text = "Lecturers";
+                studentsHeader.Text = "Lecturers";
 
                 // Force elements to update mid run
-                pnl_Students.Refresh();
-                pnl_Dashboard.Refresh();
-                img_Dashboard.Refresh();
-                listViewStudents.Refresh();
-                dateGridStudents.Refresh();
-                lbl_Students.Refresh();
+                studentsPanel.Refresh();
+                dashboardPanel.Refresh();
+                imageDashboard.Refresh();
+                studentsListview.Refresh();
+                studentsDatagrid.Refresh();
+                studentsHeader.Refresh();
 
                 Lecturers_Service lectService = new Lecturers_Service();
                 List<Lecturer> Lecturerslist = lectService.getLecturers();
 
                 // clear the listview before filling it again
-                listViewStudents.Clear();
-                listViewStudents.Columns.Add("Name");
-                listViewStudents.Columns.Add("ID");
+                studentsListview.Clear();
+                studentsListview.Columns.Add("Name");
+                studentsListview.Columns.Add("ID");
 
                 foreach (Lecturer l in Lecturerslist)
                 {
                     ListViewItem li = new ListViewItem(l.name) ;
                     li.SubItems.Add(l.number.ToString());
-                    listViewStudents.Items.Add(li);
+                    studentsListview.Items.Add(li);
                 }
             }
 
             else if (panelName == "Allocation")
             {
                 // Manage panels
-                pnl_Students.Show();
-                pnl_Dashboard.Hide();
-                img_Dashboard.Hide();
+                studentsPanel.Show();
+                dashboardPanel.Hide();
+                imageDashboard.Hide();
 
                 // Manage panel sub view
-                listViewStudents.Hide();
-                dateGridStudents.Show();
+                studentsListview.Hide();
+                studentsDatagrid.Show();
 
                 // Set panel title
-                lbl_Students.Text = "Allocation";
+                studentsHeader.Text = "Allocation";
 
                 // Force elements to update mid run
-                pnl_Students.Refresh();
-                pnl_Dashboard.Refresh();
-                img_Dashboard.Refresh();
-                listViewStudents.Refresh();
-                dateGridStudents.Refresh();
-                lbl_Students.Refresh();
+                studentsPanel.Refresh();
+                dashboardPanel.Refresh();
+                imageDashboard.Refresh();
+                studentsListview.Refresh();
+                studentsDatagrid.Refresh();
+                studentsHeader.Refresh();
 
                 RoomService roomService = new RoomService();
                 List<Room> roomList = roomService.getRooms(true);
@@ -175,12 +175,12 @@ namespace SomerenUI
                 {
                     foreach (Student student in room.students)
                     {
-                        dateGridStudents.Rows.Add(student.number, student.name, student.birthDate, room.number);
+                        studentsDatagrid.Rows.Add(student.number, student.name, student.birthDate, room.number);
                     }
 
                     foreach (Lecturer lecturer in room.lecturers)
                     {
-                        dateGridStudents.Rows.Add(lecturer.number, lecturer.name, "", room.number);
+                        studentsDatagrid.Rows.Add(lecturer.number, lecturer.name, "", room.number);
                     }
                 }
             }
@@ -206,7 +206,7 @@ namespace SomerenUI
 
         }
 
-        private void img_Dashboard_Click(object sender, EventArgs e)
+        private void imageDashboard_Click(object sender, EventArgs e)
         {
             MessageBox.Show("What happens in Someren, stays in Someren!");
         }
@@ -216,7 +216,7 @@ namespace SomerenUI
             showPanel("Students");
         }
 
-        private void listViewStudents_SelectedIndexChanged(object sender, EventArgs e)
+        private void studentsListview_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

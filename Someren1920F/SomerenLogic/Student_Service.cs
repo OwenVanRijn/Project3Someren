@@ -13,7 +13,7 @@ namespace SomerenLogic
         {
             try
             {
-                List<Student> student = studentDatabase.databaseGetAllStudents();
+                List<Student> student = studentDatabase.getAllStudents();
                 return student;
             }
             catch (Exception)

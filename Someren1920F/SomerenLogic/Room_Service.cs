@@ -13,7 +13,7 @@ namespace SomerenLogic
         {
             try
             {
-                List<Room> rooms = roomDAO.databaseGetAllRooms(deep);
+                List<Room> rooms = roomDAO.getAllRooms(deep);
                 return rooms;
             }
             catch (Exception)

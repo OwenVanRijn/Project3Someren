@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
 using System.Data;
 using SomerenModel;
 
@@ -8,26 +6,33 @@ namespace SomerenDAL
 {
     public class LecturersDAO : Base
     {
-        public List<Lecturer> databaseGetAllLecturers()
+        public List<Lecturer> getAllLecturers()
         {
             string query = "SELECT id, first, last FROM [user] WHERE teacher = 1";
-            SqlParameter[] sqlParameters = new SqlParameter[0];
-            return readTables(ExecuteSelectQuery(query, sqlParameters));
+            return lecturersMapper(ExecuteSelectQuery(query));
         }
 
-        private List<Lecturer> readTables(DataTable dataTable)
+        public List<Lecturer> getLecturersByRoom(int roomId)
+        {
+            string query = "SELECT id, first, last FROM [user] INNER JOIN user_room ON [user].id = user_room.[user] WHERE teacher = 1 AND user_room.room = " + roomId.ToString();
+            return lecturersMapper(ExecuteSelectQuery(query));
+        }
+
+        private List<Lecturer> lecturersMapper(DataTable lecturersTable)
         {
             List<Lecturer> lecturers = new List<Lecturer>();
 
-            foreach (DataRow dr in dataTable.Rows)
+            foreach (DataRow lecturerRow in lecturersTable.Rows)
             {
                 Lecturer lecturer = new Lecturer()
                 {
-                    number = (int)dr["id"],
-                    name = (string)(dr["first"].ToString()) + " " + (String)(dr["last"].ToString())
+                    name = lecturerRow["first"] + " " + lecturerRow["last"],
+                    number = (int)lecturerRow["id"]
                 };
+
                 lecturers.Add(lecturer);
             }
+
             return lecturers;
         }
     }
