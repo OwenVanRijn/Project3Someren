@@ -182,9 +182,19 @@ namespace SomerenUI
                 case "rapport":
                     panel_dashboard_container.Hide();
                     panel_information_container.Hide();
+                    pnl_belasting.Hide();
                     pnl_rapport.Show();
 
                     break;
+                case "belasting":
+                    
+                    panel_dashboard_container.Hide();
+                    panel_information_container.Hide();
+                    pnl_rapport.Hide();
+                    pnl_belasting.Show();
+
+                    break;
+
                 default:
                     toggleDashboard();
                     break;
@@ -319,5 +329,30 @@ namespace SomerenUI
 
             btn_calc_rapport.Enabled = true;
         }
+
+        private void belastingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("belasting");
+        }
+
+        private void btn_berekenbelasting_Click(object sender, EventArgs e)
+        {
+            btn_berekenbelasting.Enabled = false;
+            tb_overzicht.Text = ($"totaal 6% tarief: ");
+            tb_overzicht.Text = ($"totaal 21% tarief: ");
+            tb_overzicht.Text = ($"totale afdracht btw periode: ");
+
+            
+            catch (Exception f)
+            {
+                lv_rapport.Items.Add("Invalid datum!");
+                lv_rapport.Items.Add(f.Message);
+            }
+
+            btn_berekenbelasting.Enabled = true;
+        }
+
+
     }
+    
 }
