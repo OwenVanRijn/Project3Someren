@@ -32,6 +32,8 @@ namespace SomerenUI
                 case "students": 
                     label_title.Text = "Students";
                     listview_overview.Clear();
+                    kassaListView.Visible = false;
+                    afrekenen.Visible = false;
 
                     toggleDatalist();
                     forceRefresh();
@@ -51,6 +53,8 @@ namespace SomerenUI
                 case "rooms":
                     label_title.Text = "Rooms";
                     listview_overview.Clear();
+                    kassaListView.Visible = false;
+                    afrekenen.Visible = false;
 
                     toggleDatalist();
                     forceRefresh();
@@ -72,6 +76,8 @@ namespace SomerenUI
                 case "lecturers":
                     label_title.Text = "Lecturers";
                     listview_overview.Clear();
+                    kassaListView.Visible = false;
+                    afrekenen.Visible = false;
 
                     toggleDatalist();
                     forceRefresh();
@@ -91,6 +97,8 @@ namespace SomerenUI
                 case "allocation":
                     label_title.Text = "Allocation";
                     datagrid_overview.ClearSelection();
+                    kassaListView.Visible = false;
+                    afrekenen.Visible = false;
 
                     toggleDatagrid();
                     forceRefresh();
@@ -117,6 +125,8 @@ namespace SomerenUI
                 case "drankvoorraad":
                     label_title.Text = "Drinks";
                     listview_overview.Clear();
+                    kassaListView.Visible = false;
+                    afrekenen.Visible = false;
 
                     toggleDatalist();
                     forceRefresh();
@@ -136,7 +146,39 @@ namespace SomerenUI
                     }
 
                     break;
+                case "kassa":
+                    label_title.Text = "Kassa";
+                    listview_overview.Clear();
 
+                    kassaListView.Visible = true;
+                    afrekenen.Visible = true;
+                    toggleDatalist();
+                    forceRefresh();
+
+                    listview_overview.Columns.Add("Name");
+                    listview_overview.Columns.Add("ID");
+
+                    foreach (Student student in studentService.getStudents())
+                    {
+                        ListViewItem li = new ListViewItem(student.name);
+                        li.SubItems.Add(student.number.ToString());
+                     
+                        listview_overview.Items.Add(li);
+                    }
+                    kassaListView.Columns.Add("Name");
+                    kassaListView.Columns.Add("Amount");
+                    kassaListView.Columns.Add("Price");
+                    kassaListView.Columns.Add("BTW");
+
+                    foreach (Drink drink in drinkService.getDrinks())
+                    {
+                        ListViewItem li = new ListViewItem(drink.name);
+                        li.SubItems.Add(drink.amount.ToString());
+                        li.SubItems.Add(drink.price.ToString());
+                        li.SubItems.Add(drink.btw.ToString());
+                        kassaListView.Items.Add(li);
+                    }
+                    break;
                 default:
                     toggleDashboard();
                     break;
@@ -219,6 +261,26 @@ namespace SomerenUI
         private void drankvoorraadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("drankvoorraad");
+        }
+
+        private void kassaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("kassa");
+        }
+
+        private void datagrid_overview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void kassaListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void afrekenen_Click(object sender, EventArgs e)
+        {
+             
         }
     }
 }

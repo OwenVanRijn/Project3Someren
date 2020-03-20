@@ -40,6 +40,7 @@
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.llocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drankvoorraadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kassaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_dashboard_container = new System.Windows.Forms.Panel();
             this.lbl_Dashboard = new System.Windows.Forms.Label();
             this.panel_information_container = new System.Windows.Forms.Panel();
@@ -54,6 +55,8 @@
             this.studentDOB = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.picturebox_logo = new System.Windows.Forms.PictureBox();
             this.label_title = new System.Windows.Forms.Label();
+            this.kassaListView = new System.Windows.Forms.ListView();
+            this.afrekenen = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel_dashboard_container.SuspendLayout();
             this.panel_information_container.SuspendLayout();
@@ -71,7 +74,8 @@
             this.activitiesToolStripMenuItem,
             this.roomsToolStripMenuItem,
             this.llocationToolStripMenuItem,
-            this.drankvoorraadToolStripMenuItem});
+            this.drankvoorraadToolStripMenuItem,
+            this.kassaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
@@ -149,6 +153,13 @@
             this.drankvoorraadToolStripMenuItem.Text = "Drankvoorraad";
             this.drankvoorraadToolStripMenuItem.Click += new System.EventHandler(this.drankvoorraadToolStripMenuItem_Click);
             // 
+            // kassaToolStripMenuItem
+            // 
+            this.kassaToolStripMenuItem.Name = "kassaToolStripMenuItem";
+            this.kassaToolStripMenuItem.Size = new System.Drawing.Size(48, 22);
+            this.kassaToolStripMenuItem.Text = "Kassa";
+            this.kassaToolStripMenuItem.Click += new System.EventHandler(this.kassaToolStripMenuItem_Click);
+            // 
             // panel_dashboard_container
             // 
             this.panel_dashboard_container.Controls.Add(this.lbl_Dashboard);
@@ -168,6 +179,8 @@
             // 
             // panel_information_container
             // 
+            this.panel_information_container.Controls.Add(this.afrekenen);
+            this.panel_information_container.Controls.Add(this.kassaListView);
             this.panel_information_container.Controls.Add(this.datagrid_overview);
             this.panel_information_container.Controls.Add(this.listview_overview);
             this.panel_information_container.Controls.Add(this.picturebox_logo);
@@ -185,10 +198,12 @@
             this.name,
             this.birth,
             this.room});
-            this.datagrid_overview.Location = new System.Drawing.Point(15, 45);
+            this.datagrid_overview.Location = new System.Drawing.Point(15, 52);
             this.datagrid_overview.Name = "datagrid_overview";
+            this.datagrid_overview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.datagrid_overview.Size = new System.Drawing.Size(766, 307);
             this.datagrid_overview.TabIndex = 6;
+            this.datagrid_overview.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagrid_overview_CellContentClick);
             // 
             // id
             // 
@@ -220,7 +235,7 @@
             this.studentName,
             this.studentDOB});
             this.listview_overview.HideSelection = false;
-            this.listview_overview.Location = new System.Drawing.Point(15, 45);
+            this.listview_overview.Location = new System.Drawing.Point(15, 52);
             this.listview_overview.Name = "listview_overview";
             this.listview_overview.Size = new System.Drawing.Size(766, 307);
             this.listview_overview.TabIndex = 5;
@@ -261,6 +276,27 @@
             this.label_title.Size = new System.Drawing.Size(107, 29);
             this.label_title.TabIndex = 3;
             this.label_title.Text = "Students";
+            // 
+            // kassaListView
+            // 
+            this.kassaListView.HideSelection = false;
+            this.kassaListView.Location = new System.Drawing.Point(354, 52);
+            this.kassaListView.Name = "kassaListView";
+            this.kassaListView.Size = new System.Drawing.Size(427, 307);
+            this.kassaListView.TabIndex = 7;
+            this.kassaListView.UseCompatibleStateImageBehavior = false;
+            this.kassaListView.View = System.Windows.Forms.View.Details;
+            this.kassaListView.Visible = false;
+            // 
+            // afrekenen
+            // 
+            this.afrekenen.Location = new System.Drawing.Point(671, 365);
+            this.afrekenen.Name = "afrekenen";
+            this.afrekenen.Size = new System.Drawing.Size(110, 46);
+            this.afrekenen.TabIndex = 8;
+            this.afrekenen.Text = "Afrekenen";
+            this.afrekenen.UseVisualStyleBackColor = true;
+            this.afrekenen.Click += new System.EventHandler(this.afrekenen_Click);
             // 
             // SomerenUI
             // 
@@ -316,6 +352,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn birth;
         private System.Windows.Forms.DataGridViewTextBoxColumn room;
         private System.Windows.Forms.ToolStripMenuItem drankvoorraadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kassaToolStripMenuItem;
+        private System.Windows.Forms.ListView kassaListView;
+        private System.Windows.Forms.Button afrekenen;
     }
 }
 
