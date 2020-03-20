@@ -99,7 +99,6 @@
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
             this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(80, 22);
             this.dashboardToolStripMenuItem.Text = "Application";
-            this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
             // dashboardToolStripMenuItem1
             // 
@@ -171,7 +170,6 @@
             this.lbl_Dashboard.Size = new System.Drawing.Size(185, 13);
             this.lbl_Dashboard.TabIndex = 1;
             this.lbl_Dashboard.Text = "Welcome to the Someren Application!";
-            this.lbl_Dashboard.Click += new System.EventHandler(this.label1_Click);
             // 
             // studentsPanel
             // 
@@ -233,7 +231,6 @@
             this.studentsListview.TabIndex = 5;
             this.studentsListview.UseCompatibleStateImageBehavior = false;
             this.studentsListview.View = System.Windows.Forms.View.Details;
-            this.studentsListview.SelectedIndexChanged += new System.EventHandler(this.studentsListview_SelectedIndexChanged);
             // 
             // studentID
             // 
