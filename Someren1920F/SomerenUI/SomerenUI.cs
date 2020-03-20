@@ -179,6 +179,12 @@ namespace SomerenUI
                         kassaListView.Items.Add(li);
                     }
                     break;
+                case "rapport":
+                    panel_dashboard_container.Hide();
+                    panel_information_container.Hide();
+                    pnl_rapport.Show();
+
+                    break;
                 default:
                     toggleDashboard();
                     break;
@@ -208,6 +214,7 @@ namespace SomerenUI
             // Show datagrid and hide listview
             listview_overview.Hide();
             datagrid_overview.Show();
+            pnl_rapport.Hide();
         }
 
         private void toggleDatalist()
@@ -219,12 +226,14 @@ namespace SomerenUI
             // Show listview and hide datagrid
             listview_overview.Show();
             datagrid_overview.Hide();
+            pnl_rapport.Hide();
         }
 
         private void toggleDashboard()
         {
             // Hide data panel and show dashboard panel
             panel_information_container.Hide();
+            pnl_rapport.Hide();
             panel_dashboard_container.Show();
         }
 
@@ -281,6 +290,34 @@ namespace SomerenUI
         private void afrekenen_Click(object sender, EventArgs e)
         {
              
+        }
+
+        private void rapportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("rapport");
+        }
+
+        private void btn_calc_rapport_Click(object sender, EventArgs e)
+        {
+            btn_calc_rapport.Enabled = false;
+            OrderDrinkService orderDrinkService = new OrderDrinkService();
+            lv_rapport.Clear();
+            lv_rapport.Refresh();
+
+            try
+            {
+                Rapport rapport = orderDrinkService.CreateReport(cal_begindate.SelectionStart, cal_enddate.SelectionStart);
+                lv_rapport.Items.Add($"Afzet: {rapport.Afzet}");
+                lv_rapport.Items.Add($"Omzet: {rapport.Omzet:0.00}");
+                lv_rapport.Items.Add($"Klanten: {rapport.Klanten}");
+            }
+            catch (Exception f)
+            {
+                lv_rapport.Items.Add("Invalid datum!");
+                lv_rapport.Items.Add(f.Message);
+            }
+
+            btn_calc_rapport.Enabled = true;
         }
     }
 }
