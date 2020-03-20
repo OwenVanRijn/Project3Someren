@@ -52,7 +52,7 @@ namespace SomerenDAL
             };
 
             DataTable dataTable = ExecuteSelectQuery(query, args);
-            orderid = (int)dataTable.Rows[0]["orderid"];
+            orderid = Decimal.ToInt32(((decimal)dataTable.Rows[0]["orderid"]));
 
             query = "INSERT INTO order_drink ([order], drink, amount) VALUES (@order, @drink, @amount)";
 
@@ -62,7 +62,7 @@ namespace SomerenDAL
                 new SqlParameter("@amount", amount)
             };
 
-            ExecuteSelectQuery(query, args2);
+            ExecuteEditQuery(query, args2);
 
             query = "UPDATE drink Set amount = amount - @amount where [id] = @drinkid";
 
@@ -71,7 +71,7 @@ namespace SomerenDAL
                 new SqlParameter("@drinkid", drinkId)
             };
 
-            ExecuteSelectQuery(query, args3);
+            ExecuteEditQuery(query, args3);
         }
     }
 }
