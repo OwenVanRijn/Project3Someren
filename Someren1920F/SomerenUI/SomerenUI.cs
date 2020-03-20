@@ -12,6 +12,13 @@ namespace SomerenUI
     {
         public object ControlChars { get; private set; }
 
+        static readonly string[] ignoredDrinks =
+        {
+            "Water",
+            "Sinas",
+            "Kersensap"
+        };
+
         public SomerenUI()
         {
             InitializeComponent();
@@ -35,8 +42,6 @@ namespace SomerenUI
                 case "students": 
                     label_title.Text = "Students";
                     listview_overview.Clear();
-                    kassaListView.Visible = false;
-                    afrekenen.Visible = false;
 
                     toggleDatalist();
                     forceRefresh();
@@ -56,8 +61,6 @@ namespace SomerenUI
                 case "rooms":
                     label_title.Text = "Rooms";
                     listview_overview.Clear();
-                    kassaListView.Visible = false;
-                    afrekenen.Visible = false;
 
                     toggleDatalist();
                     forceRefresh();
@@ -79,8 +82,6 @@ namespace SomerenUI
                 case "lecturers":
                     label_title.Text = "Lecturers";
                     listview_overview.Clear();
-                    kassaListView.Visible = false;
-                    afrekenen.Visible = false;
 
                     toggleDatalist();
                     forceRefresh();
@@ -100,8 +101,6 @@ namespace SomerenUI
                 case "allocation":
                     label_title.Text = "Allocation";
                     datagrid_overview.ClearSelection();
-                    kassaListView.Visible = false;
-                    afrekenen.Visible = false;
 
                     toggleDatagrid();
                     forceRefresh();
@@ -128,8 +127,6 @@ namespace SomerenUI
                 case "drankvoorraad":
                     label_title.Text = "Drinks";
                     listview_overview.Clear();
-                    kassaListView.Visible = false;
-                    afrekenen.Visible = false;
 
                     toggleDatalist();
                     forceRefresh();
@@ -141,6 +138,14 @@ namespace SomerenUI
 
                     foreach (Drink drink in drinkService.getDrinks())
                     {
+                        bool isContinue = false;
+                        foreach (string ignoreddrink in ignoredDrinks)
+                            if (drink.name == ignoreddrink)
+                                isContinue = true;
+
+                        if (isContinue)
+                            continue;
+                                
                         ListViewItem li = new ListViewItem(drink.name);
                         li.SubItems.Add(drink.amount.ToString());
                         li.SubItems.Add(drink.price.ToString());
@@ -150,28 +155,31 @@ namespace SomerenUI
 
                     break;
                 case "kassa":
-                    label_title.Text = "Kassa";
-                    listview_overview.Clear();
+                    lbl_kassa_status.Text = "Bezig met laden...";
+                    panel_dashboard_container.Hide();
+                    panel_information_container.Hide();
+                    pnl_belasting.Hide();
+                    pnl_rapport.Hide();
+                    pnl_kassa.Show();
 
-                    kassaListView.Visible = true;
-                    afrekenen.Visible = true;
-                    toggleDatalist();
-                    forceRefresh();
-
-                    listview_overview.Columns.Add("Name");
-                    listview_overview.Columns.Add("ID");
+                    lv_KassaDrankjes.Clear();
+                    lv_KassaStudenten.Clear();
+  
+                    lv_KassaStudenten.Columns.Add("Name");
+                    lv_KassaStudenten.Columns.Add("ID");
 
                     foreach (Student student in studentService.getStudents())
                     {
                         ListViewItem li = new ListViewItem(student.name);
                         li.SubItems.Add(student.number.ToString());
                      
-                        listview_overview.Items.Add(li);
+                        lv_KassaStudenten.Items.Add(li);
                     }
-                    kassaListView.Columns.Add("Name");
-                    kassaListView.Columns.Add("Amount");
-                    kassaListView.Columns.Add("Price");
-                    kassaListView.Columns.Add("BTW");
+                    lv_KassaDrankjes.Columns.Add("Name");
+                    lv_KassaDrankjes.Columns.Add("Amount");
+                    lv_KassaDrankjes.Columns.Add("Price");
+                    lv_KassaDrankjes.Columns.Add("BTW");
+                    lv_KassaDrankjes.Columns.Add("ID");
 
                     foreach (Drink drink in drinkService.getDrinks())
                     {
@@ -179,14 +187,20 @@ namespace SomerenUI
                         li.SubItems.Add(drink.amount.ToString());
                         li.SubItems.Add(drink.price.ToString());
                         li.SubItems.Add(drink.btw.ToString());
-                        kassaListView.Items.Add(li);
+                        li.SubItems.Add(drink.id.ToString());
+                        lv_KassaDrankjes.Items.Add(li);
                     }
+                    lbl_kassa_status.Text = "Ready!";
                     break;
                 case "rapport":
                     panel_dashboard_container.Hide();
                     panel_information_container.Hide();
                     pnl_belasting.Hide();
+                    pnl_kassa.Hide();
                     pnl_rapport.Show();
+
+                    lv_rapport.Clear();
+                    lv_rapport.Refresh();
 
                     break;
                 case "belasting":
@@ -223,11 +237,13 @@ namespace SomerenUI
             // Hide dashboard panel and show data panel
             panel_information_container.Show();
             panel_dashboard_container.Hide();
+            
 
             // Show datagrid and hide listview
             listview_overview.Hide();
             datagrid_overview.Show();
             pnl_rapport.Hide();
+            pnl_kassa.Hide();
         }
 
         private void toggleDatalist()
@@ -240,6 +256,7 @@ namespace SomerenUI
             listview_overview.Show();
             datagrid_overview.Hide();
             pnl_rapport.Hide();
+            pnl_kassa.Hide();
         }
 
         private void toggleDashboard()
@@ -247,6 +264,7 @@ namespace SomerenUI
             // Hide data panel and show dashboard panel
             panel_information_container.Hide();
             pnl_rapport.Hide();
+            pnl_kassa.Hide();
             panel_dashboard_container.Show();
         }
 
@@ -371,6 +389,7 @@ namespace SomerenUI
                 start = new DateTime(2020, 10, 01);
                 end = new DateTime(2020, 12, 31);
             }
+            */
 
             OrderDrinkDAO oarderDrinkDAO = new OrderDrinkDAO();
 
@@ -388,7 +407,39 @@ namespace SomerenUI
             btn_berekenbelasting.Enabled = true;
         }
 
+        private void lv_KassaDrankjes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lv_KassaDrankjes.SelectedItems.Count > 1)
+                lv_KassaDrankjes.SelectedItems[0].Selected = false;
+        }
 
+        private void lv_KassaStudenten_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lv_KassaStudenten.SelectedItems.Count > 1)
+                lv_KassaStudenten.SelectedItems[0].Selected = false;
+        }
+
+        private void btn_kassa_afrekenen_Click(object sender, EventArgs e)
+        {
+            btn_kassa_afrekenen.Enabled = false;
+
+            if (lv_KassaStudenten.SelectedItems.Count != 1 || lv_KassaDrankjes.SelectedItems.Count != 1)
+            {
+                lbl_kassa_status.Text = "Error: Geen student of geen drankje geselecteerd!";
+                btn_kassa_afrekenen.Enabled = true;
+                return;
+            }
+
+            lbl_kassa_status.Text = "Bezig met order maken...";
+
+            OrderDrinkService orderDrinkService = new OrderDrinkService();
+            int drankid = int.Parse(lv_KassaDrankjes.SelectedItems[0].SubItems[4].Text);
+            int studentid = int.Parse(lv_KassaStudenten.SelectedItems[0].SubItems[1].Text);
+            orderDrinkService.AddOrder(studentid, drankid, 1);
+
+            showPanel("kassa");
+            btn_kassa_afrekenen.Enabled = true;
+        }
     }
     
 }
