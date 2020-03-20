@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SomerenLogic
 {
-    public class Student_Service
+    public class StudentService
     {
         StudentDAO studentDatabase = new StudentDAO();
 

@@ -1,4 +1,5 @@
-﻿using SomerenLogic;
+﻿
+using SomerenLogic;
 using SomerenModel;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace SomerenUI
                 studentsDatagrid.Hide();
 
                 // Set panel title
-                studentsHeader.Text = "Students";
+                label_title.Text = "Students";
 
                 // Force elements to update mid run
                 studentsPanel.Refresh();
@@ -49,10 +50,10 @@ namespace SomerenUI
                 imageDashboard.Refresh();
                 studentsListview.Refresh();
                 studentsDatagrid.Refresh();
-                studentsHeader.Refresh();
+                label_title.Refresh();
 
                 // fill the students listview within the students panel with a list of students
-                SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
+                SomerenLogic.StudentService studService = new SomerenLogic.StudentService();
                 List<Student> studentList = studService.getStudents();
 
                 // clear the listview before filling it again
@@ -79,7 +80,7 @@ namespace SomerenUI
                 studentsDatagrid.Hide();
 
                 // Set panel title
-                studentsHeader.Text = "Rooms";
+                label_title.Text = "Rooms";
 
                 // Force elements to update mid run
                 studentsPanel.Refresh();
@@ -87,7 +88,7 @@ namespace SomerenUI
                 imageDashboard.Refresh();
                 studentsListview.Refresh();
                 studentsDatagrid.Refresh();
-                studentsHeader.Refresh();
+                label_title.Refresh();
 
                 RoomService roomService = new RoomService();
                 List<Room> rooms = roomService.getRooms(false);
@@ -118,7 +119,7 @@ namespace SomerenUI
                 studentsDatagrid.Hide();
 
                 // Set panel title
-                studentsHeader.Text = "Lecturers";
+                label_title.Text = "Lecturers";
 
                 // Force elements to update mid run
                 studentsPanel.Refresh();
@@ -126,9 +127,9 @@ namespace SomerenUI
                 imageDashboard.Refresh();
                 studentsListview.Refresh();
                 studentsDatagrid.Refresh();
-                studentsHeader.Refresh();
+                label_title.Refresh();
 
-                Lecturers_Service lectService = new Lecturers_Service();
+                LecturersService lectService = new LecturersService();
                 List<Lecturer> Lecturerslist = lectService.getLecturers();
 
                 // clear the listview before filling it again
@@ -156,7 +157,7 @@ namespace SomerenUI
                 studentsDatagrid.Show();
 
                 // Set panel title
-                studentsHeader.Text = "Allocation";
+                label_title.Text = "Allocation";
 
                 // Force elements to update mid run
                 studentsPanel.Refresh();
@@ -164,7 +165,7 @@ namespace SomerenUI
                 imageDashboard.Refresh();
                 studentsListview.Refresh();
                 studentsDatagrid.Refresh();
-                studentsHeader.Refresh();
+                label_title.Refresh();
 
                 RoomService roomService = new RoomService();
                 List<Room> roomList = roomService.getRooms(true);
@@ -184,6 +185,48 @@ namespace SomerenUI
                     }
                 }
             }
+            else if (panelName == "Drankvoorraad")
+            {
+                // Manage panels
+                studentsPanel.Show();
+                dashboardPanel.Hide();
+                imageDashboard.Hide();
+
+                // Manage panel sub view
+                studentsListview.Show();
+                studentsDatagrid.Hide();
+
+                // Set panel title
+                label_title.Text = "Drinks";
+
+                // Force elements to update mid run
+                studentsPanel.Refresh();
+                dashboardPanel.Refresh();
+                imageDashboard.Refresh();
+                studentsListview.Refresh();
+                studentsDatagrid.Refresh();
+                label_title.Refresh();
+
+                DrinkService drinkService = new DrinkService();
+                List<Drink> drinksList = drinkService.getDrinks();
+
+                // clear the listview before filling it again
+                studentsListview.Clear();
+                studentsListview.Columns.Add("Name");
+                studentsListview.Columns.Add("Amount");
+                studentsListview.Columns.Add("Price");
+                studentsListview.Columns.Add("BTW");
+
+                foreach (Drink drink in drinksList)
+                {
+                    ListViewItem li = new ListViewItem(drink.name);
+                    li.SubItems.Add(drink.amount.ToString());
+                    li.SubItems.Add(drink.price.ToString());
+                    li.SubItems.Add(drink.btw.ToString());
+                    studentsListview.Items.Add(li);
+                }
+            }
+
         }
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -234,6 +277,11 @@ namespace SomerenUI
         private void llocationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Allocation");
+        }
+
+        private void drankvoorraadToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            showPanel("Drankvoorraad");
         }
     }
 }

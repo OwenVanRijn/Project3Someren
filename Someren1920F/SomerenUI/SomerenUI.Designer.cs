@@ -39,27 +39,28 @@
             this.lecturersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.llocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dashboardPanel = new System.Windows.Forms.Panel();
             this.lbl_Dashboard = new System.Windows.Forms.Label();
             this.studentsPanel = new System.Windows.Forms.Panel();
-            this.studentsListview = new System.Windows.Forms.ListView();
-            this.studentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.studentName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.studentDOB = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.studentsHeader = new System.Windows.Forms.Label();
-            this.llocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.studentsDatagrid = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.birth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.room = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.studentsListview = new System.Windows.Forms.ListView();
+            this.studentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.studentName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.studentDOB = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label_title = new System.Windows.Forms.Label();
+            this.drankvoorraadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.imageDashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.dashboardPanel.SuspendLayout();
             this.studentsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentsDatagrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // imageDashboard
@@ -80,7 +81,8 @@
             this.lecturersToolStripMenuItem,
             this.activitiesToolStripMenuItem,
             this.roomsToolStripMenuItem,
-            this.llocationToolStripMenuItem});
+            this.llocationToolStripMenuItem,
+            this.drankvoorraadToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
@@ -145,6 +147,13 @@
             this.roomsToolStripMenuItem.Text = "Rooms";
             this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
+            // llocationToolStripMenuItem
+            // 
+            this.llocationToolStripMenuItem.Name = "llocationToolStripMenuItem";
+            this.llocationToolStripMenuItem.Size = new System.Drawing.Size(73, 22);
+            this.llocationToolStripMenuItem.Text = "Allocation";
+            this.llocationToolStripMenuItem.Click += new System.EventHandler(this.llocationToolStripMenuItem_Click);
+            // 
             // dashboardPanel
             // 
             this.dashboardPanel.Controls.Add(this.lbl_Dashboard);
@@ -169,11 +178,47 @@
             this.studentsPanel.Controls.Add(this.studentsDatagrid);
             this.studentsPanel.Controls.Add(this.studentsListview);
             this.studentsPanel.Controls.Add(this.pictureBox1);
-            this.studentsPanel.Controls.Add(this.studentsHeader);
+            this.studentsPanel.Controls.Add(this.label_title);
             this.studentsPanel.Location = new System.Drawing.Point(9, 27);
             this.studentsPanel.Name = "studentsPanel";
             this.studentsPanel.Size = new System.Drawing.Size(938, 467);
             this.studentsPanel.TabIndex = 4;
+            // 
+            // studentsDatagrid
+            // 
+            this.studentsDatagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.studentsDatagrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
+            this.name,
+            this.birth,
+            this.room});
+            this.studentsDatagrid.Location = new System.Drawing.Point(16, 42);
+            this.studentsDatagrid.Name = "studentsDatagrid";
+            this.studentsDatagrid.Size = new System.Drawing.Size(766, 150);
+            this.studentsDatagrid.TabIndex = 6;
+            // 
+            // id
+            // 
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
+            // birth
+            // 
+            this.birth.HeaderText = "Date of Birth";
+            this.birth.Name = "birth";
+            // 
+            // room
+            // 
+            this.room.HeaderText = "Room";
+            this.room.Name = "room";
+            this.room.ReadOnly = true;
             // 
             // studentsListview
             // 
@@ -215,58 +260,22 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // studentsHeader
+            // label_title
             // 
-            this.studentsHeader.AutoSize = true;
-            this.studentsHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.studentsHeader.Location = new System.Drawing.Point(10, 10);
-            this.studentsHeader.Name = "studentsHeader";
-            this.studentsHeader.Size = new System.Drawing.Size(107, 29);
-            this.studentsHeader.TabIndex = 3;
-            this.studentsHeader.Text = "Students";
+            this.label_title.AutoSize = true;
+            this.label_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_title.Location = new System.Drawing.Point(10, 10);
+            this.label_title.Name = "label_title";
+            this.label_title.Size = new System.Drawing.Size(107, 29);
+            this.label_title.TabIndex = 3;
+            this.label_title.Text = "Students";
             // 
-            // llocationToolStripMenuItem
+            // drankvoorraadToolStripMenuItem
             // 
-            this.llocationToolStripMenuItem.Name = "llocationToolStripMenuItem";
-            this.llocationToolStripMenuItem.Size = new System.Drawing.Size(73, 22);
-            this.llocationToolStripMenuItem.Text = "Allocation";
-            this.llocationToolStripMenuItem.Click += new System.EventHandler(this.llocationToolStripMenuItem_Click);
-            // 
-            // studentsDatagrid
-            // 
-            this.studentsDatagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.studentsDatagrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.name,
-            this.birth,
-            this.room});
-            this.studentsDatagrid.Location = new System.Drawing.Point(16, 42);
-            this.studentsDatagrid.Name = "studentsDatagrid";
-            this.studentsDatagrid.Size = new System.Drawing.Size(766, 150);
-            this.studentsDatagrid.TabIndex = 6;
-            // 
-            // id
-            // 
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Name";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            // 
-            // birth
-            // 
-            this.birth.HeaderText = "Date of Birth";
-            this.birth.Name = "birth";
-            // 
-            // room
-            // 
-            this.room.HeaderText = "Room";
-            this.room.Name = "room";
-            this.room.ReadOnly = true;
+            this.drankvoorraadToolStripMenuItem.Name = "drankvoorraadToolStripMenuItem";
+            this.drankvoorraadToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
+            this.drankvoorraadToolStripMenuItem.Text = "Drankvoorraad";
+            this.drankvoorraadToolStripMenuItem.Click += new System.EventHandler(this.drankvoorraadToolStripMenuItem_Click_1);
             // 
             // SomerenUI
             // 
@@ -289,8 +298,8 @@
             this.dashboardPanel.PerformLayout();
             this.studentsPanel.ResumeLayout(false);
             this.studentsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentsDatagrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -311,7 +320,7 @@
         private System.Windows.Forms.ToolStripMenuItem activitiesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem roomsToolStripMenuItem;
         private System.Windows.Forms.Panel studentsPanel;
-        private System.Windows.Forms.Label studentsHeader;
+        private System.Windows.Forms.Label label_title;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ListView studentsListview;
         private System.Windows.Forms.ColumnHeader studentID;
@@ -323,6 +332,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn birth;
         private System.Windows.Forms.DataGridViewTextBoxColumn room;
+        private System.Windows.Forms.ToolStripMenuItem drankvoorraadToolStripMenuItem;
     }
 }
 
