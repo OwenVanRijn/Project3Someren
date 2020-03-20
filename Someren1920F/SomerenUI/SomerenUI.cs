@@ -1,4 +1,5 @@
 ﻿
+using SomerenDAL;
 using SomerenLogic;
 using SomerenModel;
 using System;
@@ -9,6 +10,8 @@ namespace SomerenUI
 {
     public partial class SomerenUI : Form
     {
+        public object ControlChars { get; private set; }
+
         public SomerenUI()
         {
             InitializeComponent();
@@ -338,16 +341,49 @@ namespace SomerenUI
         private void btn_berekenbelasting_Click(object sender, EventArgs e)
         {
             btn_berekenbelasting.Enabled = false;
-            tb_overzicht.Text = ($"totaal 6% tarief: ");
-            tb_overzicht.Text = ($"totaal 21% tarief: ");
-            tb_overzicht.Text = ($"totale afdracht btw periode: ");
 
-            
-            catch (Exception f)
-            {
-                lv_rapport.Items.Add("Invalid datum!");
-                lv_rapport.Items.Add(f.Message);
+            DateTime start;
+            DateTime end;
+
+            start = new DateTime();
+            end = new DateTime();
+
+            // I would use a switch but I'm very low on time so this will be a TODO - Schotsl
+            if (rb_1kwartaal.Checked) {
+                start = new DateTime(2020, 01, 01);
+                end = new DateTime(2020, 03, 31);
             }
+
+            if (rb_2kwartaal.Checked)
+            {
+                start = new DateTime(2020, 04, 01);
+                end = new DateTime(2020, 06, 30);
+            }
+
+            if (rb_3kwartaal.Checked)
+            {
+                start = new DateTime(2020, 07, 01);
+                end = new DateTime(2020, 09, 30);
+            }
+
+            if (rb_4kwartaal.Checked)
+            {
+                start = new DateTime(2020, 10, 01);
+                end = new DateTime(2020, 12, 31);
+            }
+
+            OrderDrinkDAO oarderDrinkDAO = new OrderDrinkDAO();
+
+            string drinks = oarderDrinkDAO.getProfit(9, start, end);
+            string alchol = oarderDrinkDAO.getProfit(21, start, end);
+
+            tb_overzicht.Text = "";
+            tb_overzicht.Text += "Totaal 6% tarief: " + Math.Round(Decimal.Parse(drinks), 2);
+            tb_overzicht.Text += Environment.NewLine;
+            tb_overzicht.Text += "totaal 21% tarief: " + Math.Round(Decimal.Parse(alchol), 2);
+            tb_overzicht.Text += Environment.NewLine;
+            tb_overzicht.Text += "Totale afdracht BTW periode: " + Math.Round(Decimal.Parse(drinks) + Decimal.Parse(alchol), 2).ToString();
+
 
             btn_berekenbelasting.Enabled = true;
         }

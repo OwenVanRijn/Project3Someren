@@ -73,5 +73,20 @@ namespace SomerenDAL
 
             ExecuteSelectQuery(query, args3);
         }
+
+        public string getProfit(int btw, DateTime begintime, DateTime endtime)
+        {
+            string query = "SELECT SUM(price * order_drink.amount * drink.btw) AS test FROM orders INNER JOIN order_drink ON orders.id = order_drink.[order] INNER JOIN drink ON order_drink.drink = drink.id AND drink.btw=@btw AND orders.creationDate > @begindate AND orders.creationDate < @enddate";
+
+            SqlParameter[] args = {
+                new SqlParameter("@btw", btw),
+                new SqlParameter("@begindate", begintime),
+                new SqlParameter("@enddate", endtime)
+            };
+
+            DataTable table = ExecuteSelectQuery(query, args);
+
+            return table.Rows[0]["test"].ToString();
+        }
     }
 }
