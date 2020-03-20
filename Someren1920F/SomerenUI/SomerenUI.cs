@@ -2,7 +2,6 @@
 using SomerenLogic;
 using SomerenModel;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 
@@ -17,221 +16,174 @@ namespace SomerenUI
 
         private void somerenUILoad(object sender, EventArgs e)
         {
-            showPanel("Dashboard");
+            showPanel();
         }
 
-        private void showPanel(string panelName)
+        private void showPanel(string panelName = null)
         {
+            // Added services to scope since two panels use the same service
+            RoomService roomService = new RoomService();
+            DrinkService drinkService = new DrinkService();
+            StudentService studentService = new StudentService();
+            LecturerService lecturerService = new LecturerService();
 
-            if(panelName == "Dashboard")
+            switch (panelName)
             {
-                // Manage panel view
-                studentsPanel.Hide();
-                dashboardPanel.Show();
-                imageDashboard.Show();
-            }
-            else if(panelName == "Students")
-            {
-                // Manage panels
-                studentsPanel.Show();
-                dashboardPanel.Hide();
-                imageDashboard.Hide();
+                case "students": 
+                    label_title.Text = "Students";
+                    listview_overview.Clear();
 
-                // Manage panel sub view
-                studentsListview.Show();
-                studentsDatagrid.Hide();
+                    toggleDatalist();
+                    forceRefresh();
 
-                // Set panel title
-                label_title.Text = "Students";
+                    listview_overview.Columns.Add("Name");
+                    listview_overview.Columns.Add("ID");
 
-                // Force elements to update mid run
-                studentsPanel.Refresh();
-                dashboardPanel.Refresh();
-                imageDashboard.Refresh();
-                studentsListview.Refresh();
-                studentsDatagrid.Refresh();
-                label_title.Refresh();
-
-                // fill the students listview within the students panel with a list of students
-                SomerenLogic.StudentService studService = new SomerenLogic.StudentService();
-                List<Student> studentList = studService.getStudents();
-
-                // clear the listview before filling it again
-                studentsListview.Clear();
-                studentsListview.Columns.Add("Name");
-                studentsListview.Columns.Add("ID");
-
-                foreach (SomerenModel.Student s in studentList)
-                {
-                    ListViewItem li = new ListViewItem(s.name);
-                    li.SubItems.Add(s.number.ToString());
-                    studentsListview.Items.Add(li);
-                }
-            }
-            else if (panelName == "Rooms")
-            {
-                // Manage panels
-                studentsPanel.Show();
-                dashboardPanel.Hide();
-                imageDashboard.Hide();
-
-                // Manage panel sub view
-                studentsListview.Show();
-                studentsDatagrid.Hide();
-
-                // Set panel title
-                label_title.Text = "Rooms";
-
-                // Force elements to update mid run
-                studentsPanel.Refresh();
-                dashboardPanel.Refresh();
-                imageDashboard.Refresh();
-                studentsListview.Refresh();
-                studentsDatagrid.Refresh();
-                label_title.Refresh();
-
-                RoomService roomService = new RoomService();
-                List<Room> rooms = roomService.getRooms(false);
-
-                studentsListview.Clear();
-                studentsListview.Columns.Add("Number");
-                studentsListview.Columns.Add("Capacity");
-                studentsListview.Columns.Add("Type");
-
-                foreach (Room r in rooms)
-                {
-                    ListViewItem li = new ListViewItem(r.number.ToString());
-                    li.SubItems.Add(r.capacity.ToString());
-                    li.SubItems.Add((r.type) ? "Student_Room" : "Teacher_Room");
-                    studentsListview.Items.Add(li);
-                }
-            }
-
-            else if (panelName == "Lecturers")
-            {
-                // Manage panels
-                studentsPanel.Show();
-                dashboardPanel.Hide();
-                imageDashboard.Hide();
-
-                // Manage panel sub view
-                studentsListview.Show();
-                studentsDatagrid.Hide();
-
-                // Set panel title
-                label_title.Text = "Lecturers";
-
-                // Force elements to update mid run
-                studentsPanel.Refresh();
-                dashboardPanel.Refresh();
-                imageDashboard.Refresh();
-                studentsListview.Refresh();
-                studentsDatagrid.Refresh();
-                label_title.Refresh();
-
-                LecturersService lectService = new LecturersService();
-                List<Lecturer> Lecturerslist = lectService.getLecturers();
-
-                // clear the listview before filling it again
-                studentsListview.Clear();
-                studentsListview.Columns.Add("Name");
-                studentsListview.Columns.Add("ID");
-
-                foreach (Lecturer l in Lecturerslist)
-                {
-                    ListViewItem li = new ListViewItem(l.name) ;
-                    li.SubItems.Add(l.number.ToString());
-                    studentsListview.Items.Add(li);
-                }
-            }
-
-            else if (panelName == "Allocation")
-            {
-                // Manage panels
-                studentsPanel.Show();
-                dashboardPanel.Hide();
-                imageDashboard.Hide();
-
-                // Manage panel sub view
-                studentsListview.Hide();
-                studentsDatagrid.Show();
-
-                // Set panel title
-                label_title.Text = "Allocation";
-
-                // Force elements to update mid run
-                studentsPanel.Refresh();
-                dashboardPanel.Refresh();
-                imageDashboard.Refresh();
-                studentsListview.Refresh();
-                studentsDatagrid.Refresh();
-                label_title.Refresh();
-
-                RoomService roomService = new RoomService();
-                List<Room> roomList = roomService.getRooms(true);
-
-                //TODO: Implement a base class to avoid these double foreach loops
-
-                foreach (Room room in roomList)
-                {
-                    foreach (Student student in room.students)
+                    foreach (Student student in studentService.getStudents())
                     {
-                        studentsDatagrid.Rows.Add(student.number, student.name, student.birthDate, room.number);
+                        ListViewItem li = new ListViewItem(student.name);
+                        li.SubItems.Add(student.number.ToString());
+                        listview_overview.Items.Add(li);
                     }
 
-                    foreach (Lecturer lecturer in room.lecturers)
+                    break;
+
+                case "rooms":
+                    label_title.Text = "Rooms";
+                    listview_overview.Clear();
+
+                    toggleDatalist();
+                    forceRefresh();
+
+                    listview_overview.Columns.Add("Number");
+                    listview_overview.Columns.Add("Capacity");
+                    listview_overview.Columns.Add("Type");
+
+                    foreach (Room room in roomService.getRooms(false))
                     {
-                        studentsDatagrid.Rows.Add(lecturer.number, lecturer.name, "", room.number);
+                        ListViewItem li = new ListViewItem(room.number.ToString());
+                        li.SubItems.Add(room.capacity.ToString());
+                        li.SubItems.Add((room.type) ? "Student_Room" : "Teacher_Room");
+                        listview_overview.Items.Add(li);
                     }
-                }
+
+                    break;
+
+                case "lecturers":
+                    label_title.Text = "Lecturers";
+                    listview_overview.Clear();
+
+                    toggleDatalist();
+                    forceRefresh();
+
+                    listview_overview.Columns.Add("Name");
+                    listview_overview.Columns.Add("ID");
+
+                    foreach (Lecturer lecturer in lecturerService.getLecturers())
+                    {
+                        ListViewItem li = new ListViewItem(lecturer.name) ;
+                        li.SubItems.Add(lecturer.number.ToString());
+                        listview_overview.Items.Add(li);
+                    }
+
+                    break;
+
+                case "allocation":
+                    label_title.Text = "Allocation";
+                    datagrid_overview.ClearSelection();
+
+                    toggleDatagrid();
+                    forceRefresh();
+
+                    listview_overview.Columns.Add("Name");
+                    listview_overview.Columns.Add("ID");
+
+                    // TODO: Remove double foreach loop if possible
+                    foreach (Room room in roomService.getRooms(true))
+                    {
+                        foreach (Student student in room.students)
+                        {
+                            datagrid_overview.Rows.Add(student.number, student.name, student.birthDate, room.number);
+                        }
+
+                        foreach (Lecturer lecturer in room.lecturers)
+                        {
+                            datagrid_overview.Rows.Add(lecturer.number, lecturer.name, "", room.number);
+                        }
+                    }
+
+                    break;
+
+                case "drankvoorraad":
+                    label_title.Text = "Drinks";
+                    listview_overview.Clear();
+
+                    toggleDatalist();
+                    forceRefresh();
+
+                    listview_overview.Columns.Add("Name");
+                    listview_overview.Columns.Add("Amount");
+                    listview_overview.Columns.Add("Price");
+                    listview_overview.Columns.Add("BTW");
+
+                    foreach (Drink drink in drinkService.getDrinks())
+                    {
+                        ListViewItem li = new ListViewItem(drink.name);
+                        li.SubItems.Add(drink.amount.ToString());
+                        li.SubItems.Add(drink.price.ToString());
+                        li.SubItems.Add(drink.btw.ToString());
+                        listview_overview.Items.Add(li);
+                    }
+
+                    break;
+
+                default:
+                    toggleDashboard();
+                    break;
             }
-            else if (panelName == "Drankvoorraad")
-            {
-                // Manage panels
-                studentsPanel.Show();
-                dashboardPanel.Hide();
-                imageDashboard.Hide();
-
-                // Manage panel sub view
-                studentsListview.Show();
-                studentsDatagrid.Hide();
-
-                // Set panel title
-                label_title.Text = "Drinks";
-
-                // Force elements to update mid run
-                studentsPanel.Refresh();
-                dashboardPanel.Refresh();
-                imageDashboard.Refresh();
-                studentsListview.Refresh();
-                studentsDatagrid.Refresh();
-                label_title.Refresh();
-
-                DrinkService drinkService = new DrinkService();
-                List<Drink> drinksList = drinkService.getDrinks();
-
-                // clear the listview before filling it again
-                studentsListview.Clear();
-                studentsListview.Columns.Add("Name");
-                studentsListview.Columns.Add("Amount");
-                studentsListview.Columns.Add("Price");
-                studentsListview.Columns.Add("BTW");
-
-                foreach (Drink drink in drinksList)
-                {
-                    ListViewItem li = new ListViewItem(drink.name);
-                    li.SubItems.Add(drink.amount.ToString());
-                    li.SubItems.Add(drink.price.ToString());
-                    li.SubItems.Add(drink.btw.ToString());
-                    studentsListview.Items.Add(li);
-                }
-            }
-
         }
 
-        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void forceRefresh()
         {
-           
+            // Refresh panels
+            panel_information_container.Refresh();
+            panel_dashboard_container.Refresh();
+
+            // Refresh dataview
+            listview_overview.Refresh();
+            datagrid_overview.Refresh();
+
+            // Refresh title
+            label_title.Refresh();
+        }
+
+        private void toggleDatagrid()
+        {
+            // Hide dashboard panel and show data panel
+            panel_information_container.Show();
+            panel_dashboard_container.Hide();
+
+            // Show datagrid and hide listview
+            listview_overview.Hide();
+            datagrid_overview.Show();
+        }
+
+        private void toggleDatalist()
+        {
+            // Hide dashboard panel and show data panel
+            panel_information_container.Show();
+            panel_dashboard_container.Hide();
+
+            // Show listview and hide datagrid
+            listview_overview.Show();
+            datagrid_overview.Hide();
+        }
+
+        private void toggleDashboard()
+        {
+            // Hide data panel and show dashboard panel
+            panel_information_container.Hide();
+            panel_dashboard_container.Show();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -241,47 +193,32 @@ namespace SomerenUI
 
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            showPanel("Dashboard");
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void imageDashboard_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("What happens in Someren, stays in Someren!");
+            showPanel("dashboard");
         }
 
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showPanel("Students");
-        }
-
-        private void studentsListview_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            showPanel("students");
         }
 
         private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showPanel("Rooms");
+            showPanel("rooms");
         }
 
         private void lecturersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showPanel("Lecturers");
+            showPanel("lecturers");
         }
 
         private void llocationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showPanel("Allocation");
+            showPanel("allocation");
         }
 
-        private void drankvoorraadToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void drankvoorraadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showPanel("Drankvoorraad");
+            showPanel("drankvoorraad");
         }
     }
 }

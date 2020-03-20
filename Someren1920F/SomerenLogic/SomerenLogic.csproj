@@ -42,10 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lecturers_Service.cs" />
-    <Compile Include="Drink_Service.cs" />
-    <Compile Include="Room_Service.cs" />
-    <Compile Include="Student_Service.cs" />
+    <Compile Include="LecturerService.cs" />
+    <Compile Include="DrinkService.cs" />
+    <Compile Include="RoomService.cs" />
+    <Compile Include="StudentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

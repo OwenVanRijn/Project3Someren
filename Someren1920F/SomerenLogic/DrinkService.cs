@@ -10,8 +10,10 @@ namespace SomerenLogic
 
         public List<Drink> getDrinks()
         {
-                List<Drink> drinks = drinkDAO.getSpeficDrinks();
-                return drinks;
+            List<Drink> drinks = drinkDAO.getSpecificDrinks();
+            return drinks;
+
+            // TODO: Add check and notification for zero results
         }
     }
 }

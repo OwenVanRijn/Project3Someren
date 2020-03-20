@@ -28,7 +28,7 @@ namespace SomerenDAL
                 if (deepProperties)
                 {
                     StudentDAO studentDAO = new StudentDAO();
-                    LecturersDAO lecturersDAO = new LecturersDAO();
+                    LecturerDAO lecturersDAO = new LecturerDAO();
 
                     room.students = studentDAO.getStudentsByRoom((int)roomRow["id"]);
                     room.lecturers = lecturersDAO.getLecturersByRoom((int)roomRow["id"]);

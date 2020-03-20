@@ -4,7 +4,7 @@ using SomerenModel;
 
 namespace SomerenDAL
 {
-    public class LecturersDAO : Base
+    public class LecturerDAO : Base
     {
         public List<Lecturer> getAllLecturers()
         {
