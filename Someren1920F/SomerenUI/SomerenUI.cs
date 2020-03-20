@@ -389,7 +389,6 @@ namespace SomerenUI
                 start = new DateTime(2020, 10, 01);
                 end = new DateTime(2020, 12, 31);
             }
-            */
 
             OrderDrinkDAO oarderDrinkDAO = new OrderDrinkDAO();
 
