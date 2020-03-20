@@ -9,6 +9,12 @@ namespace SomerenUI
 {
     public partial class SomerenUI : Form
     {
+        static readonly string[] ignoredDrinks =
+        {
+            "Water",
+            "Sinas",
+            "Kersensap"
+        };
         public SomerenUI()
         {
             InitializeComponent();
@@ -128,6 +134,14 @@ namespace SomerenUI
 
                     foreach (Drink drink in drinkService.getDrinks())
                     {
+                        bool isContinue = false;
+                        foreach (string ignoreddrink in ignoredDrinks)
+                            if (drink.name == ignoreddrink)
+                                isContinue = true;
+
+                        if (isContinue)
+                            continue;
+                                
                         ListViewItem li = new ListViewItem(drink.name);
                         li.SubItems.Add(drink.amount.ToString());
                         li.SubItems.Add(drink.price.ToString());

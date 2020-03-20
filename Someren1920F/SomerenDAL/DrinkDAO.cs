@@ -7,7 +7,7 @@ namespace SomerenDAL
     public class DrinkDAO : Base
     {
         public List<Drink> getSpecificDrinks() {
-            string query = "SELECT id, price, btw, amount, name FROM drink WHERE amount >= 1 AND price >= 1 ORDER BY amount DESC, price DESC";
+            string query = "SELECT id, price, btw, amount, name FROM drink WHERE amount > 1 AND price > 1 ORDER BY amount DESC, price DESC";
             return drinksMapper(ExecuteSelectQuery(query));
         }
 
