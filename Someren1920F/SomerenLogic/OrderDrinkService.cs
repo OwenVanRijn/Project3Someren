@@ -24,5 +24,10 @@ namespace SomerenLogic
 
             return orderDrinkDAO.makeRapport(begintime, newendtime);
         }
+
+        public void AddOrder(int studentId, int drinkId, int amount)
+        {
+            orderDrinkDAO.AddOrderDrinks(studentId, drinkId, amount);
+        }
     }
 }

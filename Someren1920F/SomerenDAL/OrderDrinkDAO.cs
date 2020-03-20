@@ -42,5 +42,36 @@ namespace SomerenDAL
 
             return rapport;
         }
+        public void AddOrderDrinks(int studentid, int drinkId, int amount)
+        {
+            int orderid;
+            string query = "INSERT INTO orders (person) VALUES (@user); SELECT SCOPE_IDENTITY() AS orderid";
+
+            SqlParameter[] args = {
+                new SqlParameter("@user", studentid)
+            };
+
+            DataTable dataTable = ExecuteSelectQuery(query, args);
+            orderid = (int)dataTable.Rows[0]["orderid"];
+
+            query = "INSERT INTO order_drink ([order], drink, amount) VALUES (@order, @drink, @amount)";
+
+            SqlParameter[] args2 = {
+                new SqlParameter("@order", orderid),
+                new SqlParameter("@drink", drinkId),
+                new SqlParameter("@amount", amount)
+            };
+
+            ExecuteSelectQuery(query, args2);
+
+            query = "UPDATE drink Set amount = amount - @amount where [id] = @drinkid";
+
+            SqlParameter[] args3 = {
+                new SqlParameter("@amount", amount),
+                new SqlParameter("@drinkid", drinkId)
+            };
+
+            ExecuteSelectQuery(query, args3);
+        }
     }
 }
