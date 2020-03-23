@@ -280,36 +280,29 @@ namespace SomerenUI
         {
             Cursor.Current = Cursors.WaitCursor;
 
+            // Disable all user input
             btn_berekenbelasting.Enabled = false;
+            rb_1kwartaal.Enabled = false;
+            rb_2kwartaal.Enabled = false;
+            rb_3kwartaal.Enabled = false;
+            rb_4kwartaal.Enabled = false;
 
+            DateTime current = DateTime.Today;
             DateTime start;
             DateTime end;
 
-            start = new DateTime();
-            end = new DateTime();
-
-            // I would use a switch but I'm very low on time so this will be a TODO - Schotsl
             if (rb_1kwartaal.Checked) {
-                start = new DateTime(2020, 01, 01);
-                end = new DateTime(2020, 03, 31);
-            }
-
-            if (rb_2kwartaal.Checked)
-            {
-                start = new DateTime(2020, 04, 01);
-                end = new DateTime(2020, 06, 30);
-            }
-
-            if (rb_3kwartaal.Checked)
-            {
-                start = new DateTime(2020, 07, 01);
-                end = new DateTime(2020, 09, 30);
-            }
-
-            if (rb_4kwartaal.Checked)
-            {
-                start = new DateTime(2020, 10, 01);
-                end = new DateTime(2020, 12, 31);
+                start = new DateTime(current.Year, 01, 01);
+                end = new DateTime(current.Year, 03, 31);
+            } else if (rb_2kwartaal.Checked) {
+                start = new DateTime(current.Year, 04, 01);
+                end = new DateTime(current.Year, 06, 30);
+            } else if (rb_3kwartaal.Checked) {
+                start = new DateTime(current.Year, 07, 01);
+                end = new DateTime(current.Year, 09, 30);
+            } else {
+                start = new DateTime(current.Year, 10, 01);
+                end = new DateTime(current.Year, 12, 31);
             }
 
             OrderDrinkDAO oarderDrinkDAO = new OrderDrinkDAO();
@@ -317,15 +310,19 @@ namespace SomerenUI
             string drinks = oarderDrinkDAO.getProfit(9, start, end);
             string alchol = oarderDrinkDAO.getProfit(21, start, end);
 
-            tb_overzicht.Text = "";
-            tb_overzicht.Text += "Totaal 6% tarief: " + Math.Round(Decimal.Parse(drinks), 2);
-            tb_overzicht.Text += Environment.NewLine;
-            tb_overzicht.Text += "totaal 21% tarief: " + Math.Round(Decimal.Parse(alchol), 2);
-            tb_overzicht.Text += Environment.NewLine;
-            tb_overzicht.Text += "Totale afdracht BTW periode: " + Math.Round(Decimal.Parse(drinks) + Decimal.Parse(alchol), 2).ToString();
+            if (String.IsNullOrEmpty(drinks)) drinks = "0";
+            if (String.IsNullOrEmpty(alchol)) alchol = "0";
 
+            label9.Text = "€ " + Math.Round(Decimal.Parse(drinks), 2);
+            label10.Text = "€ " + Math.Round(Decimal.Parse(alchol), 2);
+            label11.Text = "€ " + Math.Round(Decimal.Parse(drinks) + Decimal.Parse(alchol), 2).ToString();
 
+            // Disable all user input
             btn_berekenbelasting.Enabled = true;
+            rb_1kwartaal.Enabled = true;
+            rb_2kwartaal.Enabled = true;
+            rb_3kwartaal.Enabled = true;
+            rb_4kwartaal.Enabled = true;
 
             Cursor.Current = Cursors.Default;
         }
@@ -416,6 +413,11 @@ namespace SomerenUI
         private void kassaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("kassa");
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
     
