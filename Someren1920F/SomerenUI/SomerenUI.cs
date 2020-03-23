@@ -1,10 +1,8 @@
-﻿
-using SomerenDAL;
+﻿using SomerenDAL;
 using SomerenLogic;
 using SomerenModel;
 using System;
 using System.Windows.Forms;
-
 
 namespace SomerenUI
 {
@@ -42,7 +40,9 @@ namespace SomerenUI
 
             switch (panelName)
             {
-                case "students": 
+                case "students":
+                    Cursor.Current = Cursors.WaitCursor;
+
                     label_title.Text = "Students";
                     pnl_viewmenu.Show();
                     lv_viewmenu.Show();
@@ -57,9 +57,12 @@ namespace SomerenUI
                         lv_viewmenu.Items.Add(li);
                     }
 
+                    Cursor.Current = Cursors.Default;
                     break;
 
                 case "rooms":
+                    Cursor.Current = Cursors.WaitCursor;
+
                     label_title.Text = "Rooms";
                     pnl_viewmenu.Show();
                     lv_viewmenu.Show();
@@ -76,9 +79,12 @@ namespace SomerenUI
                         lv_viewmenu.Items.Add(li);
                     }
 
+                    Cursor.Current = Cursors.Default;
                     break;
 
                 case "lecturers":
+                    Cursor.Current = Cursors.WaitCursor;
+
                     label_title.Text = "Lecturers";
                     pnl_viewmenu.Show();
                     lv_viewmenu.Show();
@@ -93,9 +99,12 @@ namespace SomerenUI
                         lv_viewmenu.Items.Add(li);
                     }
 
+                    Cursor.Current = Cursors.Default;
                     break;
 
                 case "allocation":
+                    Cursor.Current = Cursors.WaitCursor;
+
                     label_title.Text = "Allocation";
                     pnl_viewmenu.Show();
                     dg_viewmenu.Show();
@@ -117,9 +126,12 @@ namespace SomerenUI
                         }
                     }
 
+                    Cursor.Current = Cursors.Default;
                     break;
 
                 case "drankvoorraad":
+                    Cursor.Current = Cursors.WaitCursor;
+
                     label_title.Text = "Drinks";
                     pnl_viewmenu.Show();
                     lv_viewmenu.Show();
@@ -146,8 +158,12 @@ namespace SomerenUI
                         lv_viewmenu.Items.Add(li);
                     }
 
+                    Cursor.Current = Cursors.Default;
                     break;
+                
                 case "kassa":
+                    Cursor.Current = Cursors.WaitCursor;
+
                     lbl_kassa_status.Text = "Bezig met laden...";
                     pnl_kassa.Show();
   
@@ -161,6 +177,7 @@ namespace SomerenUI
                      
                         lv_KassaStudenten.Items.Add(li);
                     }
+
                     lv_KassaDrankjes.Columns.Add("Name");
                     lv_KassaDrankjes.Columns.Add("Amount");
                     lv_KassaDrankjes.Columns.Add("Price");
@@ -176,16 +193,20 @@ namespace SomerenUI
                         li.SubItems.Add(drink.id.ToString());
                         lv_KassaDrankjes.Items.Add(li);
                     }
+                    
                     lbl_kassa_status.Text = "Ready!";
+
+                    Cursor.Current = Cursors.Default;
                     break;
+
                 case "rapport":
                     pnl_rapport.Show();
-
                     break;
+                
                 case "belasting":
                     pnl_belasting.Show();
-
                     break;
+                
                 default:
                     pnl_dashboard.Show();
                     break;
@@ -230,6 +251,8 @@ namespace SomerenUI
 
         private void btn_calc_rapport_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             btn_calc_rapport.Enabled = false;
             OrderDrinkService orderDrinkService = new OrderDrinkService();
             lv_rapport.Clear();
@@ -249,10 +272,14 @@ namespace SomerenUI
             }
 
             btn_calc_rapport.Enabled = true;
+
+            Cursor.Current = Cursors.Default;
         }
 
         private void btn_berekenbelasting_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             btn_berekenbelasting.Enabled = false;
 
             DateTime start;
@@ -299,6 +326,8 @@ namespace SomerenUI
 
 
             btn_berekenbelasting.Enabled = true;
+
+            Cursor.Current = Cursors.Default;
         }
 
         private void lv_KassaDrankjes_SelectedIndexChanged(object sender, EventArgs e)
@@ -315,6 +344,8 @@ namespace SomerenUI
 
         private void btn_kassa_afrekenen_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             btn_kassa_afrekenen.Enabled = false;
 
             if (lv_KassaStudenten.SelectedItems.Count != 1 || lv_KassaDrankjes.SelectedItems.Count != 1)
@@ -333,6 +364,8 @@ namespace SomerenUI
 
             showPanel("kassa");
             btn_kassa_afrekenen.Enabled = true;
+
+            Cursor.Current = Cursors.Default;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
