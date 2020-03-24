@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 using SomerenModel;
 
 namespace SomerenDAL
@@ -15,6 +16,14 @@ namespace SomerenDAL
         private List<Room> roomsMapper(DataTable roomsTable, bool deepProperties)
         {
             List<Room> rooms = new List<Room>();
+
+
+            if (roomsTable == null)
+            {
+                MessageBox.Show("There are no rooms in the database", "No rooms found",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return rooms;
+            }
 
             foreach (DataRow roomRow in roomsTable.Rows)
             {

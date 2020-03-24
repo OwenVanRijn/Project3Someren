@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 using SomerenModel;
 
 namespace SomerenDAL
@@ -21,6 +22,14 @@ namespace SomerenDAL
         private List<Lecturer> lecturersMapper(DataTable lecturersTable)
         {
             List<Lecturer> lecturers = new List<Lecturer>();
+
+            if (lecturersTable == null)
+            {
+                MessageBox.Show("There are no lecturers in the database", "No lecturers found",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return lecturers;
+            }
+
 
             foreach (DataRow lecturerRow in lecturersTable.Rows)
             {

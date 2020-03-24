@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 using SomerenModel;
 
 namespace SomerenDAL
@@ -21,6 +22,13 @@ namespace SomerenDAL
         private List<Student> studentsMapper(DataTable studentsTable)
         {
             List<Student> students = new List<Student>();
+
+            if (studentsTable == null)
+            {
+                MessageBox.Show("There are no students in the database", "No students found",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return students;
+            }
 
             foreach (DataRow studentRow in studentsTable.Rows)
             {

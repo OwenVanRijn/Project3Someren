@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 using SomerenModel;
 
 namespace SomerenDAL
@@ -11,11 +12,18 @@ namespace SomerenDAL
             return drinksMapper(ExecuteSelectQuery(query));
         }
 
-        private List<Drink> drinksMapper(DataTable table)
+        private List<Drink> drinksMapper(DataTable drinksTable)
         {
             List<Drink> drinks = new List<Drink>();
 
-            foreach (DataRow row in table.Rows)
+            if (drinksTable == null)
+            {
+                MessageBox.Show("There are no drinks in the database", "No drinks found",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return drinks;
+            }
+
+            foreach (DataRow row in drinksTable.Rows)
             {
                 Drink drink = new Drink()
                 {
