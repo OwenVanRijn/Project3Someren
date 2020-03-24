@@ -94,10 +94,15 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lv_activity = new System.Windows.Forms.ListView();
             this.label12 = new System.Windows.Forms.Label();
-            this.Omschrijving = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Aantal_Studenten = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Aantal_Docenten = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ActivityId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tb_activity_omschrijving = new System.Windows.Forms.TextBox();
+            this.tb_activity_student_aantal = new System.Windows.Forms.TextBox();
+            this.tb_activity_begeleider_aantal = new System.Windows.Forms.TextBox();
+            this.btn_activity_edit = new System.Windows.Forms.Button();
+            this.btn_activity_delete = new System.Windows.Forms.Button();
+            this.lbl_activity_edit_status = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.pnl_dashboard.SuspendLayout();
             this.pnl_viewmenu.SuspendLayout();
@@ -107,6 +112,7 @@
             this.pnl_belasting.SuspendLayout();
             this.pnl_kassa.SuspendLayout();
             this.pnl_activity.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -120,7 +126,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(1283, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(1283, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -131,7 +137,7 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(100, 28);
             this.dashboardToolStripMenuItem.Text = "Application";
             // 
             // dashboardToolStripMenuItem1
@@ -162,7 +168,7 @@
             this.roomAllocationToolStripMenuItem,
             this.drankvoorraadToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(55, 28);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // studentsToolStripMenuItem
@@ -206,7 +212,7 @@
             this.rapportToolStripMenuItem,
             this.belastingToolStripMenuItem});
             this.calculateToolStripMenuItem.Name = "calculateToolStripMenuItem";
-            this.calculateToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
+            this.calculateToolStripMenuItem.Size = new System.Drawing.Size(84, 28);
             this.calculateToolStripMenuItem.Text = "Calculate";
             // 
             // rapportToolStripMenuItem
@@ -229,7 +235,7 @@
             this.kassaToolStripMenuItem,
             this.activitiesToolStripMenuItem});
             this.interactToolStripMenuItem.Name = "interactToolStripMenuItem";
-            this.interactToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
+            this.interactToolStripMenuItem.Size = new System.Drawing.Size(73, 28);
             this.interactToolStripMenuItem.Text = "Interact";
             // 
             // kassaToolStripMenuItem
@@ -715,9 +721,18 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lbl_activity_edit_status);
+            this.groupBox1.Controls.Add(this.btn_activity_delete);
+            this.groupBox1.Controls.Add(this.btn_activity_edit);
+            this.groupBox1.Controls.Add(this.tb_activity_begeleider_aantal);
+            this.groupBox1.Controls.Add(this.tb_activity_student_aantal);
+            this.groupBox1.Controls.Add(this.tb_activity_omschrijving);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Location = new System.Drawing.Point(803, 23);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(450, 200);
+            this.groupBox1.Size = new System.Drawing.Size(450, 243);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Edit Activity";
@@ -726,25 +741,21 @@
             // 
             this.groupBox2.Location = new System.Drawing.Point(803, 283);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(454, 217);
+            this.groupBox2.Size = new System.Drawing.Size(454, 273);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Create Activity";
             // 
             // lv_activity
             // 
-            this.lv_activity.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Omschrijving,
-            this.Aantal_Studenten,
-            this.Aantal_Docenten,
-            this.ActivityId});
             this.lv_activity.HideSelection = false;
             this.lv_activity.Location = new System.Drawing.Point(22, 65);
             this.lv_activity.Name = "lv_activity";
-            this.lv_activity.Size = new System.Drawing.Size(372, 490);
+            this.lv_activity.Size = new System.Drawing.Size(519, 490);
             this.lv_activity.TabIndex = 2;
             this.lv_activity.UseCompatibleStateImageBehavior = false;
             this.lv_activity.View = System.Windows.Forms.View.Details;
+            this.lv_activity.SelectedIndexChanged += new System.EventHandler(this.lv_activity_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -756,25 +767,82 @@
             this.label12.TabIndex = 3;
             this.label12.Text = "Activities";
             // 
-            // Omschrijving
+            // label13
             // 
-            this.Omschrijving.Text = "Omschrijving";
-            this.Omschrijving.Width = 155;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 22);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(97, 17);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Omschrijving: ";
             // 
-            // Aantal_Studenten
+            // label14
             // 
-            this.Aantal_Studenten.Text = "Studenten";
-            this.Aantal_Studenten.Width = 74;
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(7, 48);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(129, 17);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "Studenten_Aantal: ";
             // 
-            // Aantal_Docenten
+            // label15
             // 
-            this.Aantal_Docenten.Text = "Docenten";
-            this.Aantal_Docenten.Width = 70;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(7, 76);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(132, 17);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "Begeleider_Aantal: ";
             // 
-            // ActivityId
+            // tb_activity_omschrijving
             // 
-            this.ActivityId.Text = "Id";
-            this.ActivityId.Width = 42;
+            this.tb_activity_omschrijving.Location = new System.Drawing.Point(142, 19);
+            this.tb_activity_omschrijving.Name = "tb_activity_omschrijving";
+            this.tb_activity_omschrijving.Size = new System.Drawing.Size(302, 22);
+            this.tb_activity_omschrijving.TabIndex = 3;
+            // 
+            // tb_activity_student_aantal
+            // 
+            this.tb_activity_student_aantal.Location = new System.Drawing.Point(142, 45);
+            this.tb_activity_student_aantal.Name = "tb_activity_student_aantal";
+            this.tb_activity_student_aantal.Size = new System.Drawing.Size(302, 22);
+            this.tb_activity_student_aantal.TabIndex = 4;
+            // 
+            // tb_activity_begeleider_aantal
+            // 
+            this.tb_activity_begeleider_aantal.Location = new System.Drawing.Point(142, 73);
+            this.tb_activity_begeleider_aantal.Name = "tb_activity_begeleider_aantal";
+            this.tb_activity_begeleider_aantal.Size = new System.Drawing.Size(302, 22);
+            this.tb_activity_begeleider_aantal.TabIndex = 5;
+            // 
+            // btn_activity_edit
+            // 
+            this.btn_activity_edit.Location = new System.Drawing.Point(10, 203);
+            this.btn_activity_edit.Name = "btn_activity_edit";
+            this.btn_activity_edit.Size = new System.Drawing.Size(321, 34);
+            this.btn_activity_edit.TabIndex = 6;
+            this.btn_activity_edit.Text = "Edit";
+            this.btn_activity_edit.UseVisualStyleBackColor = true;
+            this.btn_activity_edit.Click += new System.EventHandler(this.btn_activity_edit_Click);
+            // 
+            // btn_activity_delete
+            // 
+            this.btn_activity_delete.Location = new System.Drawing.Point(337, 203);
+            this.btn_activity_delete.Name = "btn_activity_delete";
+            this.btn_activity_delete.Size = new System.Drawing.Size(107, 34);
+            this.btn_activity_delete.TabIndex = 7;
+            this.btn_activity_delete.Text = "Delete";
+            this.btn_activity_delete.UseVisualStyleBackColor = true;
+            this.btn_activity_delete.Click += new System.EventHandler(this.btn_activity_delete_Click);
+            // 
+            // lbl_activity_edit_status
+            // 
+            this.lbl_activity_edit_status.AutoSize = true;
+            this.lbl_activity_edit_status.Location = new System.Drawing.Point(10, 183);
+            this.lbl_activity_edit_status.Name = "lbl_activity_edit_status";
+            this.lbl_activity_edit_status.Size = new System.Drawing.Size(58, 17);
+            this.lbl_activity_edit_status.TabIndex = 8;
+            this.lbl_activity_edit_status.Text = "Unkown";
             // 
             // SomerenUI
             // 
@@ -811,6 +879,8 @@
             this.pnl_kassa.PerformLayout();
             this.pnl_activity.ResumeLayout(false);
             this.pnl_activity.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -881,12 +951,17 @@
         private System.Windows.Forms.Panel pnl_activity;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ListView lv_activity;
-        private System.Windows.Forms.ColumnHeader Omschrijving;
-        private System.Windows.Forms.ColumnHeader Aantal_Studenten;
-        private System.Windows.Forms.ColumnHeader Aantal_Docenten;
-        private System.Windows.Forms.ColumnHeader ActivityId;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tb_activity_begeleider_aantal;
+        private System.Windows.Forms.TextBox tb_activity_student_aantal;
+        private System.Windows.Forms.TextBox tb_activity_omschrijving;
+        private System.Windows.Forms.Button btn_activity_delete;
+        private System.Windows.Forms.Button btn_activity_edit;
+        private System.Windows.Forms.Label lbl_activity_edit_status;
     }
 }
 
