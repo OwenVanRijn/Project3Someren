@@ -35,5 +35,18 @@ namespace SomerenLogic
             int id = int.Parse(activityId);
             activityDAO.DeleteActivity(id);
         }
+        public void AddActivity(string omschrijving, string studenten, string begeleiders)
+        {
+            int student_count = int.Parse(studenten);
+            int begeleider_count = int.Parse(begeleiders);
+
+            if (String.IsNullOrEmpty(omschrijving))
+                throw new Exception("Omschrijving is nothing");
+
+            if (activityDAO.CheckForDupes(omschrijving, -1))
+                throw new Exception("Omschrijving already exists!");
+
+            activityDAO.AddActivity(omschrijving, student_count, begeleider_count);
+        }
     }
 }

@@ -34,17 +34,28 @@ namespace SomerenDAL
             };
             ExecuteEditQuery(query, args);
         }
-        public bool CheckForDupes(string Omschrijving, int id)
+        public bool CheckForDupes(string omschrijving, int id)
         {
             string query = "select COUNT(*) AS [count] from activity where omschrijving = @check AND id != @id";
             SqlParameter[] args =
             {
-                new SqlParameter("@check", Omschrijving),
+                new SqlParameter("@check", omschrijving),
                 new SqlParameter("@id", id)
             };
             int count = (int)ExecuteSelectQuery(query, args).Rows[0]["count"];
 
             return (count > 0);
+        }
+        public void AddActivity(string omschrijving, int studenten, int begeleiders)
+        {
+            string query = "INSERT INTO activity (omschrijving, aantalstudenten, aantalbegeleiders) VALUES (@omsch, @sdntamnt, @begamnt)";
+            SqlParameter[] args =
+            {
+                new SqlParameter("@omsch", omschrijving),
+                new SqlParameter("@sdntamnt", studenten),
+                new SqlParameter("@begamnt", begeleiders)
+            };
+            ExecuteEditQuery(query, args);
         }
         private List<Activity> ActivityMapper(DataTable table)
         {

@@ -202,8 +202,12 @@ namespace SomerenUI
                 case "activity":
                     pnl_activity.Show();
                     lv_activity_SelectedIndexChanged(null, null); //cheeky way to not duplicate code
+                    tb_activity_create_begeleider_count.Text = "";
+                    tb_activity_create_omschrijving.Text = "";
+                    tb_activity_create_student_count.Text = "";
 
                     lv_activity.Columns.Add("Omschrijving");
+                    lv_activity.Columns[0].Width *= 2;
                     lv_activity.Columns.Add("Studenten");
                     lv_activity.Columns.Add("Begeleiders");
                     lv_activity.Columns.Add("ID");
@@ -521,6 +525,26 @@ namespace SomerenUI
             {
                 btn_activity_delete.Enabled = true;
                 btn_activity_edit.Enabled = true;
+            }
+        }
+
+        private void btn_activity_create_Click(object sender, EventArgs e)
+        {
+            ActivityService activityService = new ActivityService();
+            btn_activity_create.Enabled = false;
+
+            try
+            {
+                activityService.AddActivity(tb_activity_create_omschrijving.Text, tb_activity_create_student_count.Text, tb_activity_create_begeleider_count.Text);
+                showPanel("activity");
+            }
+            catch (Exception f)
+            {
+                lbl_activity_create_status.Text = $"Error: {f.Message}";
+            }
+            finally
+            {
+                btn_activity_create.Enabled = true;
             }
         }
     }
