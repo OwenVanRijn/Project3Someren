@@ -34,6 +34,7 @@ namespace SomerenUI
             DrinkService drinkService = new DrinkService();
             StudentService studentService = new StudentService();
             LecturerService lecturerService = new LecturerService();
+            ActivityService activityService = new ActivityService();
 
             HideAll();
             forceRefresh();
@@ -198,6 +199,26 @@ namespace SomerenUI
 
                     Cursor.Current = Cursors.Default;
                     break;
+                case "activity":
+                    pnl_activity.Show();
+                    lv_activity_SelectedIndexChanged(null, null); //cheeky way to not duplicate code
+
+                    lv_activity.Columns.Add("Omschrijving");
+                    lv_activity.Columns.Add("Studenten");
+                    lv_activity.Columns.Add("Begeleiders");
+                    lv_activity.Columns.Add("ID");
+
+                    foreach (Activity activity in activityService.GetActivities())
+                    {
+                        ListViewItem li = new ListViewItem(activity.Omschrijving);
+                        li.SubItems.Add(activity.AantalStudenten.ToString());
+                        li.SubItems.Add(activity.AantalBegeleiders.ToString());
+                        li.SubItems.Add(activity.Id.ToString());
+                        lv_activity.Items.Add(li);
+                    }
+
+                    lbl_activity_edit_status.Text = "Ready!";
+                    break;
 
                 case "rapport":
                     pnl_rapport.Show();
@@ -235,6 +256,7 @@ namespace SomerenUI
             lv_KassaDrankjes.Clear();
             lv_KassaStudenten.Clear();
             lv_rapport.Clear();
+            lv_activity.Clear();
         }
 
         private void HideAll()
@@ -247,6 +269,7 @@ namespace SomerenUI
             pnl_rapport.Hide();
             pnl_kassa.Hide();
             pnl_belasting.Hide();
+            pnl_activity.Hide();
         }
 
         private void btn_calc_rapport_Click(object sender, EventArgs e)
@@ -418,6 +441,87 @@ namespace SomerenUI
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("activity");
+        }
+
+        private void lv_activity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lv_activity.SelectedItems.Count > 1)
+                lv_activity.SelectedItems[0].Selected = false;
+            else if (lv_activity.SelectedItems.Count == 1)
+            {
+                tb_activity_begeleider_aantal.Enabled = true;
+                tb_activity_omschrijving.Enabled = true;
+                tb_activity_student_aantal.Enabled = true;
+                btn_activity_delete.Enabled = true;
+                btn_activity_edit.Enabled = true;
+
+                tb_activity_omschrijving.Text = lv_activity.SelectedItems[0].SubItems[0].Text;
+                tb_activity_student_aantal.Text = lv_activity.SelectedItems[0].SubItems[1].Text;
+                tb_activity_begeleider_aantal.Text = lv_activity.SelectedItems[0].SubItems[2].Text;
+            }
+            else
+            {
+                tb_activity_begeleider_aantal.Enabled = false;
+                tb_activity_omschrijving.Enabled = false;
+                tb_activity_student_aantal.Enabled = false;
+                btn_activity_delete.Enabled = false;
+                btn_activity_edit.Enabled = false;
+
+                tb_activity_omschrijving.Text = "";
+                tb_activity_begeleider_aantal.Text = "";
+                tb_activity_student_aantal.Text = "";
+            }
+        }
+
+        private void btn_activity_edit_Click(object sender, EventArgs e)
+        {
+            ActivityService activityService = new ActivityService();
+            btn_activity_delete.Enabled = false;
+            btn_activity_edit.Enabled = false;
+
+            try
+            {
+                activityService.EditActivity(
+                   tb_activity_omschrijving.Text,
+                   tb_activity_student_aantal.Text,
+                   tb_activity_begeleider_aantal.Text,
+                   lv_activity.SelectedItems[0].SubItems[3].Text
+                );
+                showPanel("activity");
+            }
+            catch(Exception f)
+            {
+                lbl_activity_edit_status.Text = $"Error: {f.Message}";
+            }
+        }
+
+        private void btn_activity_delete_Click(object sender, EventArgs e)
+        {
+            ActivityService activityService = new ActivityService();
+            btn_activity_delete.Enabled = false;
+            btn_activity_edit.Enabled = false;
+
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to delete this activity?",
+                "Confirm removal",
+                MessageBoxButtons.YesNo
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                activityService.DeleteActivity(lv_activity.SelectedItems[0].SubItems[3].Text);
+                showPanel("activity");
+            }
+            else
+            {
+                btn_activity_delete.Enabled = true;
+                btn_activity_edit.Enabled = true;
+            }
         }
     }
     
