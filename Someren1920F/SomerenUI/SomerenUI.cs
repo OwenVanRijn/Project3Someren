@@ -34,6 +34,7 @@ namespace SomerenUI
             DrinkService drinkService = new DrinkService();
             StudentService studentService = new StudentService();
             LecturerService lecturerService = new LecturerService();
+            ActivityService activityService = new ActivityService();
 
             HideAll();
             forceRefresh();
@@ -198,6 +199,24 @@ namespace SomerenUI
 
                     Cursor.Current = Cursors.Default;
                     break;
+                case "activity":
+                    pnl_activity.Show();
+
+                    lv_activity.Columns.Add("Omschrijving");
+                    lv_activity.Columns.Add("Studenten");
+                    lv_activity.Columns.Add("Begeleiders");
+                    lv_activity.Columns.Add("ID");
+
+                    foreach (Activity activity in activityService.GetActivities())
+                    {
+                        ListViewItem li = new ListViewItem(activity.Omschrijving);
+                        li.SubItems.Add(activity.AantalStudenten.ToString());
+                        li.SubItems.Add(activity.AantalBegeleiders.ToString());
+                        li.SubItems.Add(activity.Id.ToString());
+                        lv_activity.Items.Add(li);
+                    }
+
+                    break;
 
                 case "rapport":
                     pnl_rapport.Show();
@@ -235,6 +254,7 @@ namespace SomerenUI
             lv_KassaDrankjes.Clear();
             lv_KassaStudenten.Clear();
             lv_rapport.Clear();
+            lv_activity.Clear();
         }
 
         private void HideAll()
@@ -247,6 +267,7 @@ namespace SomerenUI
             pnl_rapport.Hide();
             pnl_kassa.Hide();
             pnl_belasting.Hide();
+            pnl_activity.Hide();
         }
 
         private void btn_calc_rapport_Click(object sender, EventArgs e)
@@ -418,6 +439,11 @@ namespace SomerenUI
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("activity");
         }
     }
     
