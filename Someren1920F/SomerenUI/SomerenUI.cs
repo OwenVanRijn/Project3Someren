@@ -35,6 +35,8 @@ namespace SomerenUI
             StudentService studentService = new StudentService();
             LecturerService lecturerService = new LecturerService();
             ActivityService activityService = new ActivityService();
+            BegeleiderService begeleiderService = new BegeleiderService();
+
 
             HideAll();
             forceRefresh();
@@ -241,6 +243,19 @@ namespace SomerenUI
                     lbl_activity_edit_status.Text = "Ready!";
                     break;
 
+                case "begeleiders":
+                    pnl_begeleiders.Show();
+                    lv_activity_SelectedIndexChanged(null, null);
+                    tb_docentid.Text = "";
+                    
+                    lv_begeleiders.Columns.Add("ID");
+
+                    foreach (Begeleider begeleider in begeleiderService.GetBegeleiders())
+                    {
+                        ListViewItem li = new ListViewItem(begeleider.DocentId.ToString());
+                        lv_begeleiders.Items.Add(li);
+                    }
+                    break;
                 case "rapport":
                     pnl_rapport.Show();
                     break;
@@ -265,6 +280,7 @@ namespace SomerenUI
             lv_KassaStudenten.Clear();
             lv_rapport.Clear();
             lv_activity.Clear();
+            lv_begeleiders.Clear();
         }
 
         private void HideAll()
@@ -279,6 +295,7 @@ namespace SomerenUI
             pnl_kassa.Hide();
             pnl_belasting.Hide();
             pnl_activity.Hide();
+            pnl_begeleiders.Hide();
         }
 
         private void btn_calc_rapport_Click(object sender, EventArgs e)
@@ -637,7 +654,6 @@ namespace SomerenUI
                         lv_rooster_replacement.Items.Add(li);
                     }
                 }
-
             }
         }
 
@@ -689,6 +705,40 @@ namespace SomerenUI
                     lv_rooster_replacement.Items.Add(li);
                 }
             }
+        }
+
+        private void lv_begeleiders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lv_begeleiders.SelectedItems.Count > 1)
+                lv_begeleiders.SelectedItems[0].Selected = false;
+            else if (lv_begeleiders.SelectedItems.Count == 1)
+            {
+                btn_verwijderen_van_begeleiders.Enabled = true;
+                btn_toevegen_aan_begeleiders.Enabled = true;
+            }
+            else
+            {
+
+                btn_verwijderen_van_begeleiders.Enabled = false;
+                btn_toevegen_aan_begeleiders.Enabled = false;
+            }
+        }
+
+        private void btn_toevegen_aan_begeleiders_Click(object sender, EventArgs e)
+        {
+            BegeleiderService begeleiderService = new BegeleiderService();
+            begeleiderService.AddBegeleider(tb_docentid.Text);
+        }
+
+        private void btn_verwijderen_van_begeleiders_Click(object sender, EventArgs e)
+        {
+            BegeleiderService begeleiderService = new BegeleiderService();
+            begeleiderService.DeleteBegeleider(lv_begeleiders.SelectedItems[0].Text);
+        }
+
+        private void begeleidersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("begeleiders");
         }
     }
 }

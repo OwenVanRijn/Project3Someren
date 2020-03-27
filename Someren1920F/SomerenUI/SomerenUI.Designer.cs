@@ -47,6 +47,7 @@
             this.kassaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.docentroosterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.begeleidersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_dashboard = new System.Windows.Forms.Panel();
             this.lbl_Dashboard = new System.Windows.Forms.Label();
             this.pnl_viewmenu = new System.Windows.Forms.Panel();
@@ -91,6 +92,13 @@
             this.lv_KassaDrankjes = new System.Windows.Forms.ListView();
             this.lv_KassaStudenten = new System.Windows.Forms.ListView();
             this.pnl_activity = new System.Windows.Forms.Panel();
+            this.pnl_begeleiders = new System.Windows.Forms.Panel();
+            this.label20 = new System.Windows.Forms.Label();
+            this.tb_docentid = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btn_verwijderen_van_begeleiders = new System.Windows.Forms.Button();
+            this.lv_begeleiders = new System.Windows.Forms.ListView();
+            this.btn_toevegen_aan_begeleiders = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.lv_activity = new System.Windows.Forms.ListView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -127,6 +135,7 @@
             this.pnl_belasting.SuspendLayout();
             this.pnl_kassa.SuspendLayout();
             this.pnl_activity.SuspendLayout();
+            this.pnl_begeleiders.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.pnl_rooster.SuspendLayout();
@@ -251,7 +260,9 @@
             this.interactToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.kassaToolStripMenuItem,
             this.activitiesToolStripMenuItem,
-            this.docentroosterToolStripMenuItem});
+            this.docentroosterToolStripMenuItem,
+            this.begeleidersToolStripMenuItem});
+
             this.interactToolStripMenuItem.Name = "interactToolStripMenuItem";
             this.interactToolStripMenuItem.Size = new System.Drawing.Size(59, 22);
             this.interactToolStripMenuItem.Text = "Interact";
@@ -270,12 +281,21 @@
             this.activitiesToolStripMenuItem.Text = "Activities";
             this.activitiesToolStripMenuItem.Click += new System.EventHandler(this.activitiesToolStripMenuItem_Click);
             // 
+
             // docentroosterToolStripMenuItem
             // 
             this.docentroosterToolStripMenuItem.Name = "docentroosterToolStripMenuItem";
             this.docentroosterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.docentroosterToolStripMenuItem.Text = "Docentrooster";
             this.docentroosterToolStripMenuItem.Click += new System.EventHandler(this.docentroosterToolStripMenuItem_Click_1);
+
+            // begeleidersToolStripMenuItem
+            // 
+            this.begeleidersToolStripMenuItem.Name = "begeleidersToolStripMenuItem";
+            this.begeleidersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.begeleidersToolStripMenuItem.Text = "Begeleiders";
+            this.begeleidersToolStripMenuItem.Click += new System.EventHandler(this.begeleidersToolStripMenuItem_Click);
+
             // 
             // pnl_dashboard
             // 
@@ -742,6 +762,82 @@
             this.pnl_activity.Size = new System.Drawing.Size(946, 475);
             this.pnl_activity.TabIndex = 17;
             // 
+            // pnl_begeleiders
+            // 
+            this.pnl_begeleiders.Controls.Add(this.label20);
+            this.pnl_begeleiders.Controls.Add(this.tb_docentid);
+            this.pnl_begeleiders.Controls.Add(this.label16);
+            this.pnl_begeleiders.Controls.Add(this.btn_verwijderen_van_begeleiders);
+            this.pnl_begeleiders.Controls.Add(this.lv_begeleiders);
+            this.pnl_begeleiders.Controls.Add(this.btn_toevegen_aan_begeleiders);
+            this.pnl_begeleiders.Location = new System.Drawing.Point(2, 22);
+            this.pnl_begeleiders.Margin = new System.Windows.Forms.Padding(2);
+            this.pnl_begeleiders.Name = "pnl_begeleiders";
+            this.pnl_begeleiders.Size = new System.Drawing.Size(946, 475);
+            this.pnl_begeleiders.TabIndex = 18;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(422, 72);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(71, 13);
+            this.label20.TabIndex = 9;
+            this.label20.Text = "Docenten ID:";
+            // 
+            // tb_docentid
+            // 
+            this.tb_docentid.Location = new System.Drawing.Point(507, 62);
+            this.tb_docentid.Multiline = true;
+            this.tb_docentid.Name = "tb_docentid";
+            this.tb_docentid.Size = new System.Drawing.Size(229, 32);
+            this.tb_docentid.TabIndex = 8;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(14, 17);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(138, 26);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "Begeleiders";
+            // 
+            // btn_verwijderen_van_begeleiders
+            // 
+            this.btn_verwijderen_van_begeleiders.Location = new System.Drawing.Point(415, 220);
+            this.btn_verwijderen_van_begeleiders.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_verwijderen_van_begeleiders.Name = "btn_verwijderen_van_begeleiders";
+            this.btn_verwijderen_van_begeleiders.Size = new System.Drawing.Size(520, 45);
+            this.btn_verwijderen_van_begeleiders.TabIndex = 7;
+            this.btn_verwijderen_van_begeleiders.Text = "Verwijderen van begeleiders";
+            this.btn_verwijderen_van_begeleiders.UseVisualStyleBackColor = true;
+            this.btn_verwijderen_van_begeleiders.Click += new System.EventHandler(this.btn_verwijderen_van_begeleiders_Click);
+            // 
+            // lv_begeleiders
+            // 
+            this.lv_begeleiders.HideSelection = false;
+            this.lv_begeleiders.Location = new System.Drawing.Point(16, 53);
+            this.lv_begeleiders.Margin = new System.Windows.Forms.Padding(2);
+            this.lv_begeleiders.Name = "lv_begeleiders";
+            this.lv_begeleiders.Size = new System.Drawing.Size(390, 399);
+            this.lv_begeleiders.TabIndex = 2;
+            this.lv_begeleiders.UseCompatibleStateImageBehavior = false;
+            this.lv_begeleiders.View = System.Windows.Forms.View.Details;
+            this.lv_begeleiders.SelectedIndexChanged += new System.EventHandler(this.lv_begeleiders_SelectedIndexChanged);
+            // 
+            // btn_toevegen_aan_begeleiders
+            // 
+            this.btn_toevegen_aan_begeleiders.Location = new System.Drawing.Point(415, 136);
+            this.btn_toevegen_aan_begeleiders.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_toevegen_aan_begeleiders.Name = "btn_toevegen_aan_begeleiders";
+            this.btn_toevegen_aan_begeleiders.Size = new System.Drawing.Size(520, 47);
+            this.btn_toevegen_aan_begeleiders.TabIndex = 6;
+            this.btn_toevegen_aan_begeleiders.Text = "Toevegen aan begeleiders";
+            this.btn_toevegen_aan_begeleiders.UseVisualStyleBackColor = true;
+            this.btn_toevegen_aan_begeleiders.Click += new System.EventHandler(this.btn_toevegen_aan_begeleiders_Click);
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -1041,6 +1137,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 506);
             this.Controls.Add(this.pnl_rooster);
+            this.Controls.Add(this.pnl_begeleiders);
             this.Controls.Add(this.pnl_activity);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pnl_belasting);
@@ -1070,6 +1167,8 @@
             this.pnl_kassa.PerformLayout();
             this.pnl_activity.ResumeLayout(false);
             this.pnl_activity.PerformLayout();
+            this.pnl_begeleiders.ResumeLayout(false);
+            this.pnl_begeleiders.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1144,6 +1243,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ToolStripMenuItem activitiesToolStripMenuItem;
         private System.Windows.Forms.Panel pnl_activity;
+        private System.Windows.Forms.Panel pnl_begeleiders;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ListView lv_activity;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -1166,12 +1266,18 @@
         private System.Windows.Forms.TextBox tb_activity_create_omschrijving;
         private System.Windows.Forms.Button btn_activity_create;
         private System.Windows.Forms.ToolStripMenuItem docentroosterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem begeleidersToolStripMenuItem;
         private System.Windows.Forms.Panel pnl_rooster;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ListView lv_rooster_lecturers;
         private System.Windows.Forms.ListView lv_rooster_activity;
         private System.Windows.Forms.ListView lv_rooster_replacement;
         private System.Windows.Forms.Button btn_replacement;
+        private System.Windows.Forms.ListView lv_begeleiders;
+        private System.Windows.Forms.Button btn_verwijderen_van_begeleiders;
+        private System.Windows.Forms.Button btn_toevegen_aan_begeleiders;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox tb_docentid;
     }
 }
 
