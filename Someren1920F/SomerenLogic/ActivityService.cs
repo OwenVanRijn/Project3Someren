@@ -12,6 +12,15 @@ namespace SomerenLogic
         {
             return activityDAO.GetActivities();
         }
+
+        public List<Activity> GetActivitiesByLecturer(int lecturerId)
+        {
+            return activityDAO.GetActivitiesByLecturer(lecturerId);
+        }
+        public void ChangeActivityLecturer(int activityId, int newLecturer, int oldLecturer)
+        {
+            activityDAO.ChangeActivityLecturer(activityId, newLecturer, oldLecturer);
+        }
         public void EditActivity(string omschrijving, string studenten, string begeleiders, string id)
         {
             int student_count = int.Parse(studenten);

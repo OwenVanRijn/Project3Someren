@@ -13,6 +13,11 @@ namespace SomerenDAL
             string query = "select id, omschrijving, aantalstudenten, aantalbegeleiders from activity";
             return ActivityMapper(ExecuteSelectQuery(query));
         }
+        public List<Activity> GetActivitiesByLecturer(int lecturerId)
+        {
+            string query = "SELECT activity.id, activity.omschrijving, activity.aantalstudenten, activity.aantalbegeleiders FROM activity INNER JOIN user_activity ON activity.id = user_activity.activity WHERE user_activity.person = " + lecturerId.ToString();
+            return ActivityMapper(ExecuteSelectQuery(query));
+        }
         public void EditActivity(Activity activity)
         {
             string query = "UPDATE activity SET omschrijving = @omsch, aantalBegeleiders = @begamnt, aantalStudenten = @sdntamnt WHERE id = @id";
@@ -22,6 +27,17 @@ namespace SomerenDAL
                 new SqlParameter("@begamnt", activity.AantalBegeleiders),
                 new SqlParameter("@sdntamnt", activity.AantalStudenten),
                 new SqlParameter("@id", activity.Id)
+            };
+            ExecuteEditQuery(query, args);
+        }
+        public void ChangeActivityLecturer(int activityId, int newLecturer, int oldLecturer)
+        {
+            string query = "UPDATE user_activity SET user_activity.person = @new WHERE user_activity.activity = @activity AND user_activity.person = @old";
+            SqlParameter[] args =
+           {
+                new SqlParameter("@new", newLecturer),
+                new SqlParameter("@activity", activityId),
+                new SqlParameter("@old", oldLecturer),
             };
             ExecuteEditQuery(query, args);
         }

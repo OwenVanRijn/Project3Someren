@@ -61,6 +61,22 @@ namespace SomerenUI
                     Cursor.Current = Cursors.Default;
                     break;
 
+                case "rooster":
+                    pnl_rooster.Show();
+                    lv_rooster_lecturers.Clear();
+
+                    lv_rooster_lecturers.Columns.Add("Name");
+                    lv_rooster_lecturers.Columns.Add("ID");
+
+                    foreach (Lecturer lecturer in lecturerService.getLecturers())
+                    {
+                        ListViewItem li = new ListViewItem(lecturer.name);
+                        li.SubItems.Add(lecturer.number.ToString());
+                        lv_rooster_lecturers.Items.Add(li);
+                    }
+
+                    break;
+
                 case "rooms":
                     Cursor.Current = Cursors.WaitCursor;
 
@@ -199,6 +215,7 @@ namespace SomerenUI
 
                     Cursor.Current = Cursors.Default;
                     break;
+
                 case "activity":
                     pnl_activity.Show();
                     lv_activity_SelectedIndexChanged(null, null); //cheeky way to not duplicate code
@@ -240,19 +257,6 @@ namespace SomerenUI
 
         private void forceRefresh()
         {
-            /*
-            // Refresh panels
-            panel_information_container.Refresh();
-            panel_dashboard_container.Refresh();
-
-            // Refresh dataview
-            listview_overview.Refresh();
-            
-
-            // Refresh title
-            label_title.Refresh();
-            */
-
             lv_viewmenu.Clear();
             dg_viewmenu.Rows.Clear();
             dg_viewmenu.Refresh();
@@ -271,6 +275,7 @@ namespace SomerenUI
             lv_viewmenu.Hide();
             dg_viewmenu.Hide();
             pnl_rapport.Hide();
+            pnl_rooster.Hide();
             pnl_kassa.Hide();
             pnl_belasting.Hide();
             pnl_activity.Hide();
@@ -442,6 +447,11 @@ namespace SomerenUI
             showPanel("kassa");
         }
 
+        private void docentroosterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("rooster");
+        }
+
         private void label6_Click(object sender, EventArgs e)
         {
 
@@ -547,6 +557,138 @@ namespace SomerenUI
                 btn_activity_create.Enabled = true;
             }
         }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lv_lecturers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void docentroosterToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            showPanel("rooster");
+        }
+
+        private void label16_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lv_rooster_lecturers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lv_rooster_activity.Clear();
+            lv_rooster_replacement.Clear();
+            btn_replacement.Enabled = false;
+
+            if (lv_rooster_lecturers.SelectedItems.Count > 1)
+            {
+                lv_rooster_lecturers.SelectedItems[0].Selected = false;
+            }
+            else if (lv_rooster_lecturers.SelectedItems.Count == 1)
+            {
+                ActivityService activityService = new ActivityService();
+
+                lv_rooster_activity.Clear();
+                lv_rooster_activity.Columns.Add("Omschrijving");
+                lv_rooster_activity.Columns[0].Width *= 2;
+                lv_rooster_activity.Columns.Add("Studenten");
+                lv_rooster_activity.Columns.Add("Begeleiders");
+                lv_rooster_activity.Columns.Add("ID");
+
+                foreach (Activity activity in activityService.GetActivitiesByLecturer(Int32.Parse(lv_rooster_lecturers.SelectedItems[0].SubItems[1].Text)))
+                {
+                    ListViewItem li = new ListViewItem(activity.Omschrijving);
+                    li.SubItems.Add(activity.AantalStudenten.ToString());
+                    li.SubItems.Add(activity.AantalBegeleiders.ToString());
+                    li.SubItems.Add(activity.Id.ToString());
+                    lv_rooster_activity.Items.Add(li);
+                }
+            }
+        }
+
+        private void lv_rooster_activity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lv_rooster_replacement.Clear();
+            btn_replacement.Enabled = false;
+
+            if (lv_rooster_activity.SelectedItems.Count > 1)
+            {
+                lv_rooster_activity.SelectedItems[0].Selected = false;
+            }
+            else if (lv_rooster_activity.SelectedItems.Count == 1)
+            {
+                LecturerService lecturerService = new LecturerService();
+
+                lv_rooster_replacement.Clear();
+
+                lv_rooster_replacement.Columns.Add("Name");
+                lv_rooster_replacement.Columns.Add("ID");
+
+                foreach (Lecturer lecturer in lecturerService.getLecturers())
+                {
+                    if (lv_rooster_lecturers.SelectedItems[0].SubItems[0].Text != lecturer.name)
+                    {
+                        ListViewItem li = new ListViewItem(lecturer.name);
+                        li.SubItems.Add(lecturer.number.ToString());
+                        lv_rooster_replacement.Items.Add(li);
+                    }
+                }
+
+            }
+        }
+
+        private void lv_rooster_replacement_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btn_replacement.Enabled = false;
+
+            if (lv_rooster_replacement.SelectedItems.Count > 1)
+            {
+                lv_rooster_replacement.SelectedItems[0].Selected = false;
+            }
+            else if (lv_rooster_replacement.SelectedItems.Count == 1)
+            {
+                btn_replacement.Enabled = true;
+            }
+        }
+
+        private void btn_replacement_Click(object sender, EventArgs e)
+        {
+            int oldLecturerId = Int32.Parse(lv_rooster_lecturers.SelectedItems[0].SubItems[1].Text);
+            int newLecturerId = Int32.Parse(lv_rooster_replacement.SelectedItems[0].SubItems[1].Text);
+            int activityId = Int32.Parse(lv_rooster_activity.SelectedItems[0].SubItems[3].Text);
+
+            ActivityService activityService = new ActivityService();
+
+            activityService.ChangeActivityLecturer(activityId, newLecturerId, oldLecturerId);
+
+            lv_rooster_activity.Clear();
+
+            foreach (Activity activity in activityService.GetActivitiesByLecturer(Int32.Parse(lv_rooster_lecturers.SelectedItems[0].SubItems[1].Text)))
+            {
+                ListViewItem li = new ListViewItem(activity.Omschrijving);
+                li.SubItems.Add(activity.AantalStudenten.ToString());
+                li.SubItems.Add(activity.AantalBegeleiders.ToString());
+                li.SubItems.Add(activity.Id.ToString());
+                lv_rooster_activity.Items.Add(li);
+            }
+
+            LecturerService lecturerService = new LecturerService();
+
+            lv_rooster_replacement.Clear();
+
+            foreach (Lecturer lecturer in lecturerService.getLecturers())
+            {
+                if (lv_rooster_lecturers.SelectedItems[0].SubItems[0].Text != lecturer.name)
+                {
+                    ListViewItem li = new ListViewItem(lecturer.name);
+                    li.SubItems.Add(lecturer.number.ToString());
+                    lv_rooster_replacement.Items.Add(li);
+                }
+            }
+        }
     }
-    
 }
