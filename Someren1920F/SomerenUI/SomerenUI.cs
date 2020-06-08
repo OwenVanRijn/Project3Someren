@@ -263,7 +263,12 @@ namespace SomerenUI
                 case "belasting":
                     pnl_belasting.Show();
                     break;
-                
+
+                case "weekrooster":
+                    pnl_week.Show();
+
+                    break;
+
                 default:
                     pnl_dashboard.Show();
                     break;
@@ -287,6 +292,7 @@ namespace SomerenUI
         {
             pnl_viewmenu.Hide();
             pnl_dashboard.Hide();
+            pnl_week.Hide();
 
             lv_viewmenu.Hide();
             dg_viewmenu.Hide();
@@ -739,6 +745,11 @@ namespace SomerenUI
         private void begeleidersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("begeleiders");
+        }
+
+        private void weekroosterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("weekrooster");
         }
     }
 }

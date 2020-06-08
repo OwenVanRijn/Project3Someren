@@ -125,6 +125,12 @@
             this.btn_replacement = new System.Windows.Forms.Button();
             this.lv_rooster_activity = new System.Windows.Forms.ListView();
             this.lv_rooster_lecturers = new System.Windows.Forms.ListView();
+<<<<<<< HEAD
+=======
+            this.pnl_week = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.weekroosterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.menuStrip1.SuspendLayout();
             this.pnl_dashboard.SuspendLayout();
             this.pnl_viewmenu.SuspendLayout();
@@ -138,10 +144,12 @@
             this.groupBox1.SuspendLayout();
             this.pnl_begeleiders.SuspendLayout();
             this.pnl_rooster.SuspendLayout();
+            this.pnl_week.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dashboardToolStripMenuItem,
@@ -150,6 +158,10 @@
             this.interactToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+<<<<<<< HEAD
+=======
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.menuStrip1.Size = new System.Drawing.Size(1443, 33);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
@@ -167,19 +179,31 @@
             // dashboardToolStripMenuItem1
             // 
             this.dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
+<<<<<<< HEAD
             this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(202, 34);
+=======
+            this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.dashboardToolStripMenuItem1.Text = "Dashboard";
             this.dashboardToolStripMenuItem1.Click += new System.EventHandler(this.dashboardToolStripMenuItem1_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
+<<<<<<< HEAD
             this.toolStripSeparator1.Size = new System.Drawing.Size(199, 6);
+=======
+            this.toolStripSeparator1.Size = new System.Drawing.Size(267, 6);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+<<<<<<< HEAD
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(202, 34);
+=======
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -190,7 +214,8 @@
             this.lecturersToolStripMenuItem,
             this.roomsToolStripMenuItem,
             this.roomAllocationToolStripMenuItem,
-            this.drankvoorraadToolStripMenuItem});
+            this.drankvoorraadToolStripMenuItem,
+            this.weekroosterToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
             this.viewToolStripMenuItem.Text = "View";
@@ -198,35 +223,55 @@
             // studentsToolStripMenuItem
             // 
             this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
+<<<<<<< HEAD
             this.studentsToolStripMenuItem.Size = new System.Drawing.Size(246, 34);
+=======
+            this.studentsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.studentsToolStripMenuItem.Text = "Students";
             this.studentsToolStripMenuItem.Click += new System.EventHandler(this.studentsToolStripMenuItem_Click);
             // 
             // lecturersToolStripMenuItem
             // 
             this.lecturersToolStripMenuItem.Name = "lecturersToolStripMenuItem";
+<<<<<<< HEAD
             this.lecturersToolStripMenuItem.Size = new System.Drawing.Size(246, 34);
+=======
+            this.lecturersToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.lecturersToolStripMenuItem.Text = "Lecturers";
             this.lecturersToolStripMenuItem.Click += new System.EventHandler(this.lecturersToolStripMenuItem_Click);
             // 
             // roomsToolStripMenuItem
             // 
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
+<<<<<<< HEAD
             this.roomsToolStripMenuItem.Size = new System.Drawing.Size(246, 34);
+=======
+            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.roomsToolStripMenuItem.Text = "Rooms";
             this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
             // roomAllocationToolStripMenuItem
             // 
             this.roomAllocationToolStripMenuItem.Name = "roomAllocationToolStripMenuItem";
+<<<<<<< HEAD
             this.roomAllocationToolStripMenuItem.Size = new System.Drawing.Size(246, 34);
+=======
+            this.roomAllocationToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.roomAllocationToolStripMenuItem.Text = "Room Allocation";
             this.roomAllocationToolStripMenuItem.Click += new System.EventHandler(this.roomAllocationToolStripMenuItem_Click);
             // 
             // drankvoorraadToolStripMenuItem
             // 
             this.drankvoorraadToolStripMenuItem.Name = "drankvoorraadToolStripMenuItem";
+<<<<<<< HEAD
             this.drankvoorraadToolStripMenuItem.Size = new System.Drawing.Size(246, 34);
+=======
+            this.drankvoorraadToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.drankvoorraadToolStripMenuItem.Text = "Drankvoorraad";
             this.drankvoorraadToolStripMenuItem.Click += new System.EventHandler(this.drankvoorraadToolStripMenuItem_Click);
             // 
@@ -242,14 +287,22 @@
             // rapportToolStripMenuItem
             // 
             this.rapportToolStripMenuItem.Name = "rapportToolStripMenuItem";
+<<<<<<< HEAD
             this.rapportToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
+=======
+            this.rapportToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.rapportToolStripMenuItem.Text = "Rapport";
             this.rapportToolStripMenuItem.Click += new System.EventHandler(this.rapportToolStripMenuItem_Click);
             // 
             // belastingToolStripMenuItem
             // 
             this.belastingToolStripMenuItem.Name = "belastingToolStripMenuItem";
+<<<<<<< HEAD
             this.belastingToolStripMenuItem.Size = new System.Drawing.Size(185, 34);
+=======
+            this.belastingToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.belastingToolStripMenuItem.Text = "Belasting";
             this.belastingToolStripMenuItem.Click += new System.EventHandler(this.belastingToolStripMenuItem_Click);
             // 
@@ -267,28 +320,44 @@
             // kassaToolStripMenuItem
             // 
             this.kassaToolStripMenuItem.Name = "kassaToolStripMenuItem";
+<<<<<<< HEAD
             this.kassaToolStripMenuItem.Size = new System.Drawing.Size(228, 34);
+=======
+            this.kassaToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.kassaToolStripMenuItem.Text = "Kassa";
             this.kassaToolStripMenuItem.Click += new System.EventHandler(this.kassaToolStripMenuItem_Click);
             // 
             // activitiesToolStripMenuItem
             // 
             this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
+<<<<<<< HEAD
             this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(228, 34);
+=======
+            this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.activitiesToolStripMenuItem.Text = "Activities";
             this.activitiesToolStripMenuItem.Click += new System.EventHandler(this.activitiesToolStripMenuItem_Click);
             // 
             // docentroosterToolStripMenuItem
             // 
             this.docentroosterToolStripMenuItem.Name = "docentroosterToolStripMenuItem";
+<<<<<<< HEAD
             this.docentroosterToolStripMenuItem.Size = new System.Drawing.Size(228, 34);
+=======
+            this.docentroosterToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.docentroosterToolStripMenuItem.Text = "Docentrooster";
             this.docentroosterToolStripMenuItem.Click += new System.EventHandler(this.docentroosterToolStripMenuItem_Click_1);
             // 
             // begeleidersToolStripMenuItem
             // 
             this.begeleidersToolStripMenuItem.Name = "begeleidersToolStripMenuItem";
+<<<<<<< HEAD
             this.begeleidersToolStripMenuItem.Size = new System.Drawing.Size(228, 34);
+=======
+            this.begeleidersToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.begeleidersToolStripMenuItem.Text = "Begeleiders";
             this.begeleidersToolStripMenuItem.Click += new System.EventHandler(this.begeleidersToolStripMenuItem_Click);
             // 
@@ -949,6 +1018,37 @@
             this.label13.Text = "Omschrijving: ";
             // 
             // pnl_begeleiders
+<<<<<<< HEAD
+            // 
+            this.pnl_begeleiders.Controls.Add(this.label20);
+            this.pnl_begeleiders.Controls.Add(this.tb_docentid);
+            this.pnl_begeleiders.Controls.Add(this.btn_verwijderen_van_begeleiders);
+            this.pnl_begeleiders.Controls.Add(this.lv_begeleiders);
+            this.pnl_begeleiders.Controls.Add(this.btn_toevegen_aan_begeleiders);
+            this.pnl_begeleiders.Location = new System.Drawing.Point(3, 34);
+            this.pnl_begeleiders.Name = "pnl_begeleiders";
+            this.pnl_begeleiders.Size = new System.Drawing.Size(1419, 731);
+            this.pnl_begeleiders.TabIndex = 18;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(633, 111);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(104, 20);
+            this.label20.TabIndex = 9;
+            this.label20.Text = "Docenten ID:";
+            // 
+            // tb_docentid
+            // 
+            this.tb_docentid.Location = new System.Drawing.Point(760, 95);
+            this.tb_docentid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tb_docentid.Multiline = true;
+            this.tb_docentid.Name = "tb_docentid";
+            this.tb_docentid.Size = new System.Drawing.Size(342, 47);
+            this.tb_docentid.TabIndex = 8;
+=======
             // 
             this.pnl_begeleiders.Controls.Add(this.label20);
             this.pnl_begeleiders.Controls.Add(this.tb_docentid);
@@ -1032,9 +1132,29 @@
             this.pnl_rooster.Name = "pnl_rooster";
             this.pnl_rooster.Size = new System.Drawing.Size(1414, 728);
             this.pnl_rooster.TabIndex = 4;
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             // 
             // lv_rooster_replacement
             // 
+<<<<<<< HEAD
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(21, 25);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(236, 38);
+            this.label16.TabIndex = 5;
+            this.label16.Text = "Docentrooster";
+            // 
+            // btn_verwijderen_van_begeleiders
+            // 
+            this.btn_verwijderen_van_begeleiders.Location = new System.Drawing.Point(622, 338);
+            this.btn_verwijderen_van_begeleiders.Name = "btn_verwijderen_van_begeleiders";
+            this.btn_verwijderen_van_begeleiders.Size = new System.Drawing.Size(780, 69);
+            this.btn_verwijderen_van_begeleiders.TabIndex = 7;
+            this.btn_verwijderen_van_begeleiders.Text = "Verwijderen van begeleiders";
+            this.btn_verwijderen_van_begeleiders.UseVisualStyleBackColor = true;
+            this.btn_verwijderen_van_begeleiders.Click += new System.EventHandler(this.btn_verwijderen_van_begeleiders_Click);
+=======
             this.lv_rooster_replacement.HideSelection = false;
             this.lv_rooster_replacement.Location = new System.Drawing.Point(952, 78);
             this.lv_rooster_replacement.Name = "lv_rooster_replacement";
@@ -1043,6 +1163,112 @@
             this.lv_rooster_replacement.UseCompatibleStateImageBehavior = false;
             this.lv_rooster_replacement.View = System.Windows.Forms.View.Details;
             this.lv_rooster_replacement.SelectedIndexChanged += new System.EventHandler(this.lv_rooster_replacement_SelectedIndexChanged);
+            // 
+            // btn_replacement
+            // 
+            this.btn_replacement.Enabled = false;
+            this.btn_replacement.Location = new System.Drawing.Point(474, 78);
+            this.btn_replacement.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_replacement.Name = "btn_replacement";
+            this.btn_replacement.Size = new System.Drawing.Size(471, 40);
+            this.btn_replacement.TabIndex = 7;
+            this.btn_replacement.Text = "Vervanging regelen";
+            this.btn_replacement.UseVisualStyleBackColor = true;
+            this.btn_replacement.Click += new System.EventHandler(this.btn_replacement_Click);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
+            // 
+            // lv_begeleiders
+            // 
+<<<<<<< HEAD
+            this.lv_begeleiders.HideSelection = false;
+            this.lv_begeleiders.Location = new System.Drawing.Point(24, 82);
+            this.lv_begeleiders.Name = "lv_begeleiders";
+            this.lv_begeleiders.Size = new System.Drawing.Size(583, 612);
+            this.lv_begeleiders.TabIndex = 2;
+            this.lv_begeleiders.UseCompatibleStateImageBehavior = false;
+            this.lv_begeleiders.View = System.Windows.Forms.View.Details;
+            this.lv_begeleiders.SelectedIndexChanged += new System.EventHandler(this.lv_begeleiders_SelectedIndexChanged);
+            // 
+            // btn_toevegen_aan_begeleiders
+            // 
+            this.btn_toevegen_aan_begeleiders.Location = new System.Drawing.Point(622, 209);
+            this.btn_toevegen_aan_begeleiders.Name = "btn_toevegen_aan_begeleiders";
+            this.btn_toevegen_aan_begeleiders.Size = new System.Drawing.Size(780, 72);
+            this.btn_toevegen_aan_begeleiders.TabIndex = 6;
+            this.btn_toevegen_aan_begeleiders.Text = "Toevegen aan begeleiders";
+            this.btn_toevegen_aan_begeleiders.UseVisualStyleBackColor = true;
+            this.btn_toevegen_aan_begeleiders.Click += new System.EventHandler(this.btn_toevegen_aan_begeleiders_Click);
+            // 
+            // pnl_rooster
+            // 
+            this.pnl_rooster.Controls.Add(this.lv_rooster_replacement);
+            this.pnl_rooster.Controls.Add(this.btn_replacement);
+            this.pnl_rooster.Controls.Add(this.lv_rooster_activity);
+            this.pnl_rooster.Controls.Add(this.label16);
+            this.pnl_rooster.Controls.Add(this.lv_rooster_lecturers);
+            this.pnl_rooster.Location = new System.Drawing.Point(9, 35);
+            this.pnl_rooster.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnl_rooster.Name = "pnl_rooster";
+            this.pnl_rooster.Size = new System.Drawing.Size(1414, 728);
+            this.pnl_rooster.TabIndex = 4;
+=======
+            this.lv_rooster_activity.HideSelection = false;
+            this.lv_rooster_activity.Location = new System.Drawing.Point(474, 125);
+            this.lv_rooster_activity.Name = "lv_rooster_activity";
+            this.lv_rooster_activity.Size = new System.Drawing.Size(469, 566);
+            this.lv_rooster_activity.TabIndex = 6;
+            this.lv_rooster_activity.UseCompatibleStateImageBehavior = false;
+            this.lv_rooster_activity.View = System.Windows.Forms.View.Details;
+            this.lv_rooster_activity.SelectedIndexChanged += new System.EventHandler(this.lv_rooster_activity_SelectedIndexChanged);
+            // 
+            // lv_rooster_lecturers
+            // 
+            this.lv_rooster_lecturers.HideSelection = false;
+            this.lv_rooster_lecturers.Location = new System.Drawing.Point(24, 80);
+            this.lv_rooster_lecturers.Name = "lv_rooster_lecturers";
+            this.lv_rooster_lecturers.Size = new System.Drawing.Size(440, 612);
+            this.lv_rooster_lecturers.TabIndex = 4;
+            this.lv_rooster_lecturers.UseCompatibleStateImageBehavior = false;
+            this.lv_rooster_lecturers.View = System.Windows.Forms.View.Details;
+            this.lv_rooster_lecturers.SelectedIndexChanged += new System.EventHandler(this.lv_rooster_lecturers_SelectedIndexChanged);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
+            // 
+            // pnl_week
+            // 
+<<<<<<< HEAD
+            this.lv_rooster_replacement.HideSelection = false;
+            this.lv_rooster_replacement.Location = new System.Drawing.Point(952, 78);
+            this.lv_rooster_replacement.Name = "lv_rooster_replacement";
+            this.lv_rooster_replacement.Size = new System.Drawing.Size(444, 612);
+            this.lv_rooster_replacement.TabIndex = 8;
+            this.lv_rooster_replacement.UseCompatibleStateImageBehavior = false;
+            this.lv_rooster_replacement.View = System.Windows.Forms.View.Details;
+            this.lv_rooster_replacement.SelectedIndexChanged += new System.EventHandler(this.lv_rooster_replacement_SelectedIndexChanged);
+=======
+            this.pnl_week.Controls.Add(this.label21);
+            this.pnl_week.Location = new System.Drawing.Point(0, 38);
+            this.pnl_week.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnl_week.Name = "pnl_week";
+            this.pnl_week.Size = new System.Drawing.Size(1842, 728);
+            this.pnl_week.TabIndex = 9;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(32, 23);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(214, 38);
+            this.label21.TabIndex = 5;
+            this.label21.Text = "Weekrooster";
+            // 
+            // weekroosterToolStripMenuItem
+            // 
+            this.weekroosterToolStripMenuItem.Name = "weekroosterToolStripMenuItem";
+            this.weekroosterToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.weekroosterToolStripMenuItem.Text = "Weekrooster";
+            this.weekroosterToolStripMenuItem.Click += new System.EventHandler(this.weekroosterToolStripMenuItem_Click);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             // 
             // btn_replacement
             // 
@@ -1083,6 +1309,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1443, 778);
+<<<<<<< HEAD
+=======
+            this.Controls.Add(this.pnl_week);
+>>>>>>> 95b6e2f42b1bdb0b0e7425bca6149c35ea29daec
             this.Controls.Add(this.pnl_rooster);
             this.Controls.Add(this.pnl_begeleiders);
             this.Controls.Add(this.pnl_activity);
@@ -1123,6 +1353,8 @@
             this.pnl_begeleiders.PerformLayout();
             this.pnl_rooster.ResumeLayout(false);
             this.pnl_rooster.PerformLayout();
+            this.pnl_week.ResumeLayout(false);
+            this.pnl_week.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1226,6 +1458,9 @@
         private System.Windows.Forms.Button btn_toevegen_aan_begeleiders;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox tb_docentid;
+        private System.Windows.Forms.ToolStripMenuItem weekroosterToolStripMenuItem;
+        private System.Windows.Forms.Panel pnl_week;
+        private System.Windows.Forms.Label label21;
     }
 }
 
